@@ -1,10 +1,10 @@
-# Ironhub
+# <p align="center" dir="auto"><img src="public/images/ironhub_nobg.png" width="100px"></p>
 
 <br>
 
 
 
-## Description
+## Description 
 
 A plataform that allows ironhackers to add and share their projects
 
