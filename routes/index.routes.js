@@ -7,7 +7,6 @@ const Project = require("../models/Project.model")
 /* GET home page */
 router.get("/", (req, res, next) => {
   const user = req.session.user
-  console.log({user})
   res.render("index", {user});
 });
 
@@ -25,11 +24,6 @@ router.get("/search/results", isLoggedIn, (req, res, next) => {
   res.render("search-results");
 });
 
-router.get('/profile', (req, res, next) => {
-  const user  = req.session.user;
-  res.render('auth/profile', user);
-})
-
 router.get('/profile/:username', (req, res, next) => {
   const {username} = req.params;
   User.findOne({username: username})
@@ -38,12 +32,20 @@ router.get('/profile/:username', (req, res, next) => {
   .catch(err => next(err));
 })
 
-router.get("/:username/edit-profile", isLoggedIn, (req, res, next) => {
-  res.render("edit-profile");
+router.get("/profile/:username/edit-profile", isLoggedIn, (req, res, next) => {
+  const {username} = req.params;
+  User.findOne({username: username})
+  .then((user) => res.render('auth/edit-profile', user))
+  .catch(err => next(err))
 });
 
-router.post("/:username/edit-profile", (req, res, next) => {
+router.post("/profile/:username/edit-profile", (req, res, next) => {
+  const {username} = req.params;
   const { password, name, surname } = req.body;
+
+  User.findOneAndUpdate({username: username}, {password, name, surname})
+  .then(user => res.redirect(`/profile/${username}`))
+  .catch(err => next(err))
 });
 
 module.exports = router;

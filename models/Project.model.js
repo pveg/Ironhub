@@ -14,7 +14,10 @@ const projectSchema = new Schema(
       required: true,
     },
     link: [String],
-    comments: [Schema.Types.ObjectId],
+    comments: {
+    type: Schema.Types.ObjectId,
+    ref: "Comment"
+    },
   },
   {
     timestamps: true,

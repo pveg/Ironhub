@@ -5,12 +5,12 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+    /*   required: true, */
       trim: true,
     },
     surname: {
       type: String,
-      required: true,
+     /*  required: true, */
       trim: true,
     },
     username: {
@@ -26,16 +26,16 @@ const userSchema = new Schema(
     },
     ironpass: {
       type: String,
-      required: true,
+      /* required: true, */
     },
     course: {
       type: String,
-      required: true,
+      /* required: true, */
       enum: ['Web Dev', 'UX/UI', 'Data', 'Cybersecurity']
     },
     campus: {
       type: String,
-      required: true,
+      /* required: true, */
     },
     profilepicture: {
       type: String,
@@ -49,7 +49,10 @@ const userSchema = new Schema(
       }
     ],
     projects: [Schema.Types.ObjectId],
-    comments: [Schema.Types.ObjectId],
+    comments: {
+      type: Schema.Types.ObjectId,
+      ref: "Project"
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
