@@ -1,6 +1,5 @@
 const router = require("express").Router();
 
-
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
@@ -20,7 +19,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 });
 
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { username, password, course, campus, name, surname, ironpass } = req.body;
+  let { username, password, course, campus, name, surname, ironpass } = req.body;
 
   if (!username) {
     return res.status(400).render("auth/signup", {
@@ -39,7 +38,6 @@ router.post("/signup", isLoggedOut, (req, res) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
-
   //   ! This use case is using a regular expression to control for special characters and min length
   /*
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -81,6 +79,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         // Bind the user to the session object
         req.session.user = user;
         res.redirect("/search");
+        //redirect to profile page
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {

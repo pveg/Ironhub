@@ -20,13 +20,6 @@ const userSchema = new Schema(
       lowercase: true,
       trim: true,
     },
-/*     email: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      lowercase: true,
-    }, */
     password: {
       type: String,
       required: true,
@@ -49,7 +42,12 @@ const userSchema = new Schema(
       default: "url",
     },
     links: [String],
-    favorites: [Schema.Types.ObjectId],
+    favorites: [
+      {
+      type: Schema.Types.ObjectId,
+      ref: "Project"
+      }
+    ],
     projects: [Schema.Types.ObjectId],
     comments: [Schema.Types.ObjectId],
   },

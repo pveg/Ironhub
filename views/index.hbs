@@ -1,11 +1,14 @@
-<h1>Welcome to Ironhub</h1>
-{{!-- <p>Welcome to Ironhub</p> --}}
+{{#if user}}
+<h1>Welcome to Ironhub {{user.username}}!</h1>
+{{/if}}
 
-<a href="/auth/login"> login</a>
 
-<a href="/auth/signup">signup</a>
+<a href="/auth/login">Login</a>
+
+<a href="/auth/signup">Sign Up</a>
 
 <a href="/search">Search</a>
 <a href="/search/results">Search Results</a>
-<a href="/auth/logout"> logout</a>
+<a href="/auth/logout">Logout</a>
+<a href="/profile/{{user.username}}">Profile</a>
 

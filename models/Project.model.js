@@ -14,7 +14,7 @@ const projectSchema = new Schema(
       required: true,
     },
     link: [String],
-    comments: [commentsId],
+    comments: [Schema.Types.ObjectId],
   },
   {
     timestamps: true,
