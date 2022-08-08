@@ -50,8 +50,6 @@ A plataform that allows ironhackers to add and share their projects
 | `POST`     | `/:username/favorites/`              | Private route. Adds a new favorite for the current user.     | { name, cuisine, city, }                                 |
 | `POST`   | `/:username/favorites/:favoriteID` | Private route. Deletes the existing favorite from the current user. |                                                                                  
 | `GET`      | `/:username`         | Renders `profile` view for the user profile. |                                                          |
-| `GET`      | `/404`         | Renders `404` for page not found. |                                                          |
-| `GET`      | `/500`         | Renders `500` for server error not found. restaurant. |                                                          |
 | `GET`      | `/search`         | Renders `search`. Private route. Search for info the user wants. |                                                          |
 | `POST`      | `/search/results`         | Renders `search-results`. Private route. Search for info the user wants. |      { course, campus, name }                                                    | 
 | `GET`      | `/:username/projects`         | Renders `project page`. Private route. View for the user's projects page. |                                                          |

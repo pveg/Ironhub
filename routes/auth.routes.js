@@ -20,7 +20,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 });
 
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, course, campus, name, surname, ironpass } = req.body;
 
   if (!username) {
     return res.status(400).render("auth/signup", {
@@ -28,6 +28,12 @@ router.post("/signup", isLoggedOut, (req, res) => {
     });
   }
 
+  if (!ironpass || ironpass !== "best_bootcamp") {
+    return res.status(400).render("auth/signup", {
+      errorMessage: "Incorrect Ironpass.",
+    });
+  }
+  
   if (password.length < 8) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 8 characters long.",
@@ -64,12 +70,17 @@ router.post("/signup", isLoggedOut, (req, res) => {
         return User.create({
           username,
           password: hashedPassword,
+          course,
+          campus,
+          ironpass,
+          name,
+          surname,
         });
       })
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
-        res.redirect("/");
+        res.redirect("/search");
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -147,9 +158,9 @@ router.get("/logout", isLoggedIn, (req, res) => {
     if (err) {
       return res
         .status(500)
-        .render("auth/logout", { errorMessage: err.message });
+        .render('auth/logout', { errorMessage: err.message });
     }
-    res.redirect("/");
+    res.redirect("/auth/login");
   });
 });
 

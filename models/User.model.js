@@ -20,13 +20,13 @@ const userSchema = new Schema(
       lowercase: true,
       trim: true,
     },
-    email: {
+/*     email: {
       type: String,
       required: true,
       unique: true,
       trim: true,
       lowercase: true,
-    },
+    }, */
     password: {
       type: String,
       required: true,
@@ -34,11 +34,11 @@ const userSchema = new Schema(
     ironpass: {
       type: String,
       required: true,
-/*       match: [best_bootcamp], */
     },
-    cohort: {
+    course: {
       type: String,
       required: true,
+      enum: ['Web Dev', 'UX/UI', 'Data', 'Cybersecurity']
     },
     campus: {
       type: String,
@@ -49,9 +49,9 @@ const userSchema = new Schema(
       default: "url",
     },
     links: [String],
-/*     favorites: [favoriteId],
-    projects: [ProjectsId],
-    comments: [CommentsId], */
+    favorites: [Schema.Types.ObjectId],
+    projects: [Schema.Types.ObjectId],
+    comments: [Schema.Types.ObjectId],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
