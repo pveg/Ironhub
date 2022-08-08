@@ -44,7 +44,7 @@ const userSchema = new Schema(
     links: [String],
     favorites: [
       {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       ref: "Project"
       }
     ],
@@ -53,7 +53,7 @@ const userSchema = new Schema(
       ref: 'Project'
     },
     comments: {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       ref: "Project"
     },
   },

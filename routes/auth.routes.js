@@ -20,7 +20,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 router.post("/signup", isLoggedOut, (req, res) => {
   let { username, password, course, campus, name, surname, ironpass } = req.body;
-
+  
   if (!username) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Please provide your username.",
