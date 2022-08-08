@@ -1,12 +1,14 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
+const isLoggedOut = require("../middleware/isLoggedOut");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-router.get("/search", (req, res, next) => {
+router.get("/search", isLoggedIn, (req, res, next) => {
   res.render("search");
 });
 
@@ -16,11 +18,16 @@ router.post("/search", (req, res, next) => {
   res.send("search/results", { course, campus, name });
 });
 
-router.get("/search/results", (req, res, next) => {
+router.get("/search/results", isLoggedIn, (req, res, next) => {
   res.render("search-results");
 });
 
-router.get("/:username/edit-profile", (req, res, next) => {
+router.get('/:username', isLoggedIn, (req, res, next) => {
+  const { username } = req.params;
+  res.render('profile');
+});
+
+router.get("/:username/edit-profile", isLoggedIn, (req, res, next) => {
   res.render("edit-profile");
 });
 
