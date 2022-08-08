@@ -42,20 +42,9 @@ const userSchema = new Schema(
       default: "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
     },
     links: [String],
-    favorites: [
-      {
-      type: [Schema.Types.ObjectId],
-      ref: "Project"
-      }
-    ],
-    projects: {
-      type: [Schema.Types.ObjectId],
-      ref: 'Project'
-    },
-    comments: {
-      type: [Schema.Types.ObjectId],
-      ref: "Project"
-    },
+    favorites: [{type: [Schema.Types.ObjectId],ref: "Project"}],
+    projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

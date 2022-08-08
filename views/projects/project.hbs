@@ -1,3 +1,11 @@
-<h1>{{username}}'s Projects</h1>
+<h1>{{user.username}}'s Projects</h1>
+
+{{#each user}}
+    {{#each projects}}
+    <h2>{{this._id}}</h2>
+    {{/each}}
+{{/each}}
+
+
 <a href="/">Back</a>
-<a href="/{{username}}/projects/new">New Project</a>
+<a href="/{{user.username}}/projects/new">New Project</a>

@@ -5,6 +5,8 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const Project = require("../models/Project.model")
 const fileUploader = require('../config/cloudinary.config');
 const Comment = require("../models/Comment.model");
+const { populate } = require("../models/User.model");
+
 
 /* DELETE - IT WORKS ON THE DATABASE BUT NOT ON THE FRONT-END */
 
@@ -82,18 +84,34 @@ router.post("/profile/:username/edit-profile", fileUploader.single('profilepictu
 
 router.get("/:username/projects", isLoggedIn, (req, res, next) => {
   const {username} = req.params;
-  User.findOne({username: username}) // Populate
+  User.findOne({username: username})
+  .populate('projects') 
   .then(user => {
-    res.render('projects/project', user)})
+    console.log(user)
+    res.render('projects/project', {user})})
   .catch(err => next(err));
 })
 
 router.get('/:username/projects/new', isLoggedIn, (req, res, next) => {
   const {username} = req.params;
-  User.findOne({username: username}) // Populate
+  User.findOne({username: username})
+  .populate('projects') 
   .then(user => {
-    res.render('projects/new-project', user)})
+    console.log(user.projects)
+    res.render('projects/new-project', {user})})
   .catch(err => next(err));
+})
+
+router.post('/:username/projects/new', isLoggedIn, (req, res, next)=>{
+  const {username} = req.params;
+  const {title, description} = req.body; //needs bodyparser(?)
+  Project.create(title, description )
+  .then((newProject) => {
+    console.log(newProject);
+    return User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
+  })
+  .then((user) => res.render(`projects/project`, {user}))
+  .catch((err) => next(err));
 })
 
 

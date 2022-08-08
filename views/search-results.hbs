@@ -1,7 +1,11 @@
 <h1>Search Results</h1>
 
+{{#each data}}
+{{this.title}}
+{{/each}}
 
-<a href="/">Login</a>
-<a href="/search">Search</a>
-<a href="/auth/logout"> logout</a>
-<a href="/profile/{{user.username}}">Profile</a>
+
+<button><a href="/">Login</a></button>
+<button></button><a href="/search">Search</a></button>
+<button><a href="/auth/logout"> logout</a></button>
+<button><a href="/profile/{{user.username}}">Profile</a></button>
