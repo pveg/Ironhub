@@ -3,13 +3,13 @@
 <form action="/profile/{{username}}/edit-profile" method="post" enctype='multipart/form-data'>
 
 <label for="name">Name</label>
-<input type="text" name="name">
+<input type="text" name="name" value="{{name}}">
 
 <label for="surname">Surname</label>
-<input type="text" name="surname">
+<input type="text" name="surname" value="{{surname}}">
 
 <label for="campus">Campus</label>
-   <select name="campus" id="campus"> Campus
+   <select name="campus" id="campus" value="{{campus}}"> Campus
       <option value="Amsterdam">Amsterdam</option>
       <option value="Barcelona">Barcelona</option>
       <option value="Berlin">Berlin</option>
@@ -25,7 +25,7 @@
 </label>
 
 <label for="course">Course</label>
-   <select name="course" id="course">Course
+   <select name="course" id="course" value="{{course}}">Course
       <option value="Web Dev">Web Dev</option>
       <option value="UX/UI">UX/UI</option>
       <option value="Data">Data Analyst</option>
@@ -33,15 +33,9 @@
   </select>
 </label>
 
-
-<label for="password">Password</label>
-<input type="password" name="password">
-
-
-      <label for='profilepicture'>Profile Picture</label>
-        <input type='file' name='profilepicture' id='profilepicture' class='form-control-file' />
-        <input type='text' name='previousUrl' value='{{profilepicture}}' hidden/>
-      </div>
+<label for='profilepicture'>Profile Picture</label>
+    <input type='file' name='profilepicture' id='profilepicture' class='form-control-file' />
+    <input type='text' name='previousUrl' value='{{profilepicture}}' hidden/>
 
 
 <button type="submit">Edit Profile</button>

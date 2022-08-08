@@ -5,12 +5,12 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-    /*   required: true, */
+      required: true,
       trim: true,
     },
     surname: {
       type: String,
-     /*  required: true, */
+      required: true,
       trim: true,
     },
     username: {
@@ -30,12 +30,12 @@ const userSchema = new Schema(
     },
     course: {
       type: String,
-      /* required: true, */
+      required: true,
       enum: ['Web Dev', 'UX/UI', 'Data Analyst', 'Cybersecurity']
     },
     campus: {
       type: String,
-      /* required: true, */
+      required: true,
     },
     profilepicture: {
       type: String,
