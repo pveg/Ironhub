@@ -6,26 +6,44 @@ const Project = require("../models/Project.model")
 const fileUploader = require('../config/cloudinary.config');
 const Comment = require("../models/Comment.model");
 
-/* GET home page */
+/* DELETE - IT WORKS ON THE DATABASE BUT NOT ON THE FRONT-END */
+
+router.get('/profile/:username/delete-profile', isLoggedIn, (req, res, next) => {
+  const {username} = req.params;
+  User.findOneAndDelete({username: username})
+  .then(() => res.redirect('/'))
+  .catch(err => next(err));
+})
+
+
+/* GET Home Page/Sign Up */
 router.get("/", (req, res, next) => {
   const user = req.session.user
   res.render("index", {user});
 });
+
+/* SEARCH */
 
 router.get("/search", isLoggedIn, (req, res, next) => {
   const user = req.session.user
   res.render("search", {user});
 });
 
+//maybe need to use query to display results?
+
 router.post("/search", (req, res, next) => {
   const { course, campus, name } = req.body;
   res.send("search/results", { course, campus, name });
 });
 
+/* SEARCH RESULTS */
+
 router.get("/search/results", isLoggedIn, (req, res, next) => {
   const user = req.session.user
   res.render("search-results", {user});
 });
+
+/* PROFILE */
 
 router.get('/profile/:username', isLoggedIn, (req, res, next) => {
   const {username} = req.params;
@@ -34,6 +52,8 @@ router.get('/profile/:username', isLoggedIn, (req, res, next) => {
     res.render('auth/profile', user)})
   .catch(err => next(err));
 })
+
+/* EDIT PROFILE */
 
 router.get("/profile/:username/edit-profile", isLoggedIn, (req, res, next) => {
   const {username} = req.params;
@@ -58,6 +78,8 @@ router.post("/profile/:username/edit-profile", fileUploader.single('profilepictu
   }
 });
 
+/* PROJECTS */
+
 router.get("/:username/projects", isLoggedIn, (req, res, next) => {
   const {username} = req.params;
   User.findOne({username: username}) // Populate
@@ -73,6 +95,7 @@ router.get('/:username/projects/new', isLoggedIn, (req, res, next) => {
     res.render('projects/new-project', user)})
   .catch(err => next(err));
 })
+
 
 
 
