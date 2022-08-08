@@ -66,5 +66,15 @@ router.get("/:username/projects", isLoggedIn, (req, res, next) => {
   .catch(err => next(err));
 })
 
-module.exports = router;
+router.get('/:username/projects/new', isLoggedIn, (req, res, next) => {
+  const {username} = req.params;
+  User.findOne({username: username}) // Populate
+  .then(user => {
+    res.render('projects/new-project', user)})
+  .catch(err => next(err));
+})
 
+
+
+
+module.exports = router;
