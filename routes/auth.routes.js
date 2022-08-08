@@ -73,6 +73,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
           ironpass,
           name,
           surname,
+          
         });
       })
       .then((user) => {

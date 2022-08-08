@@ -3,6 +3,7 @@ const User = require("../models/User.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const Project = require("../models/Project.model")
+const fileUploader = require('../config/cloudinary.config');
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -11,20 +12,21 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/search", isLoggedIn, (req, res, next) => {
-  res.render("search");
+  const user = req.session.user
+  res.render("search", {user});
 });
 
 router.post("/search", (req, res, next) => {
   const { course, campus, name } = req.body;
-
   res.send("search/results", { course, campus, name });
 });
 
 router.get("/search/results", isLoggedIn, (req, res, next) => {
-  res.render("search-results");
+  const user = req.session.user
+  res.render("search-results", {user});
 });
 
-router.get('/profile/:username', (req, res, next) => {
+router.get('/profile/:username', isLoggedIn, (req, res, next) => {
   const {username} = req.params;
   User.findOne({username: username})
   .then(user => {
@@ -35,17 +37,24 @@ router.get('/profile/:username', (req, res, next) => {
 router.get("/profile/:username/edit-profile", isLoggedIn, (req, res, next) => {
   const {username} = req.params;
   User.findOne({username: username})
-  .then((user) => res.render('auth/edit-profile', user))
+  .then((user) => { console.log(user)
+    res.render('auth/edit-profile', user)})
   .catch(err => next(err))
 });
 
-router.post("/profile/:username/edit-profile", (req, res, next) => {
+router.post("/profile/:username/edit-profile", fileUploader.single('profilepicture'), (req, res, next) => {
   const {username} = req.params;
   const { password, name, surname } = req.body;
 
-  User.findOneAndUpdate({username: username}, {password, name, surname})
-  .then(user => res.redirect(`/profile/${username}`))
-  .catch(err => next(err))
+  if(req.file) {
+    User.findOneAndUpdate({username: username}, {password, name, surname, profilepicture: req.file.path})
+    .then(() => res.redirect(`/profile/${username}`))
+    .catch(err => next(err))
+  } else {
+    User.findOneAndUpdate({username: username}, {password, name, surname})
+    .then(() => res.redirect(`/profile/${username}`))
+    .catch(err => next(err))
+  }
 });
 
 module.exports = router;
