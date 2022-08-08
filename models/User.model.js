@@ -31,7 +31,7 @@ const userSchema = new Schema(
     course: {
       type: String,
       /* required: true, */
-      enum: ['Web Dev', 'UX/UI', 'Data', 'Cybersecurity']
+      enum: ['Web Dev', 'UX/UI', 'Data Analyst', 'Cybersecurity']
     },
     campus: {
       type: String,
@@ -48,7 +48,10 @@ const userSchema = new Schema(
       ref: "Project"
       }
     ],
-    projects: [Schema.Types.ObjectId],
+    projects: {
+      type: [Schema.Types.ObjectId],
+      ref: 'Project'
+    },
     comments: {
       type: Schema.Types.ObjectId,
       ref: "Project"

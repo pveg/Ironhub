@@ -4,6 +4,7 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const Project = require("../models/Project.model")
 const fileUploader = require('../config/cloudinary.config');
+const Comment = require("../models/Comment.model");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -44,18 +45,26 @@ router.get("/profile/:username/edit-profile", isLoggedIn, (req, res, next) => {
 
 router.post("/profile/:username/edit-profile", fileUploader.single('profilepicture'), (req, res, next) => {
   const {username} = req.params;
-  const { password, name, surname } = req.body;
+  const { password, name, surname, campus, course } = req.body;
 
   if(req.file) {
-    User.findOneAndUpdate({username: username}, {password, name, surname, profilepicture: req.file.path})
+    User.findOneAndUpdate({username: username}, {password, name, surname, campus, course, username, profilepicture: req.file.path})
     .then(() => res.redirect(`/profile/${username}`))
     .catch(err => next(err))
   } else {
-    User.findOneAndUpdate({username: username}, {password, name, surname})
+    User.findOneAndUpdate({username: username}, {password, name, surname, campus, course, username})
     .then(() => res.redirect(`/profile/${username}`))
     .catch(err => next(err))
   }
 });
+
+router.get("/:username/projects", isLoggedIn, (req, res, next) => {
+  const {username} = req.params;
+  User.findOne({username: username}) // Populate
+  .then(user => {
+    res.render('projects/project', user)})
+  .catch(err => next(err));
+})
 
 module.exports = router;
 
