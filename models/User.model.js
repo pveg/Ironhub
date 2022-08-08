@@ -34,7 +34,7 @@ const userSchema = new Schema(
     ironpass: {
       type: String,
       required: true,
-      match: [best_bootcamp],
+/*       match: [best_bootcamp], */
     },
     cohort: {
       type: String,
@@ -49,9 +49,9 @@ const userSchema = new Schema(
       default: "url",
     },
     links: [String],
-    favorites: [favoriteId],
+/*     favorites: [favoriteId],
     projects: [ProjectsId],
-    comments: [CommentsId],
+    comments: [CommentsId], */
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
