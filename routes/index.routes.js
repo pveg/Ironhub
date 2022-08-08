@@ -11,7 +11,7 @@ const Comment = require("../models/Comment.model");
 router.get('/profile/:username/delete-profile', isLoggedIn, (req, res, next) => {
   const {username} = req.params;
   User.findOneAndDelete({username: username})
-  .then(() => res.redirect('/'))
+  .then(() => res.redirect('/logout'))
   .catch(err => next(err));
 })
 

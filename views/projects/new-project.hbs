@@ -1,13 +1,17 @@
 <form action="/{{username}}/projects/new" method="post" enctype='multipart/form-data'>
 
-    <label for="name">Name</label>
-    <input type="text" name="name" value="{{name}}">
+    <label for="title">Tittle</label>
+    <input type="text" name="title" value="{{title}}">
+
     <label for="description">Description</label>
     <input type="text" name="description" value="{{description}}">
+
     <label for="github">Github</label>
     <input type="text" name="github" value="{{github}}">
+
     <label for="image">Image</label>
     <input type="file" name="image" value="{{image}}">
+    
     <button type="submit">Add Project</button>
     <a href="/{{username}}/projects">Back</a>
 </form>
