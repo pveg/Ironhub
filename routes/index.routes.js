@@ -31,6 +31,21 @@ router.get('/profile/:username/delete-profile', isLoggedIn, (req, res, next) => 
   .catch(err => res.redirect('/logout'))
 });
 
+router.get('/profile/:username/delete-project/:id', isLoggedIn, (req, res, next) => {
+
+  const {username, id} = req.params;
+  User.findOne({username: username})
+  .then(user => {
+    Project.findByIdAndDelete(id)
+    .then(() => {
+      user.projects.pull(id);
+      user.save();
+      res.redirect(`/profile/${username}`)
+    })
+  })
+  .catch(err => res.redirect('/logout'))
+})
+
 
 /* GET Home Page/Sign Up */
 router.get("/", (req, res, next) => {
@@ -119,15 +134,16 @@ router.get('/:username/projects/new', isLoggedIn, (req, res, next) => {
 router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn, async (req, res, next)=>{
   try {
     const {username} = req.params;
-    const {title, description} = req.body;
-    const user = req.session.user
+    const {title, description, link} = req.body;
+    const user = req.session.user;
+    
+    
     if(req.file) {
-      const newProject = await Project.create({author: user._id, title, description, image: req.file.path})
+      const newProject = await Project.create({author: user._id, title, description, httpremover, image: req.file.path})
       await User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
       res.redirect(`/${username}/projects`)
     } else {
-
-      const newProject = await Project.create({author: user._id, title, description})
+      const newProject = await Project.create({author: user._id, title, description, httpremover})
       await User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
       res.redirect(`/${username}/projects`)
     }
@@ -139,7 +155,30 @@ router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn
 })
 
 
+/* EDIT PROJECT */
 
+router.get("/:username/projects/:projectid/edit-project", isLoggedIn, (req, res, next) => {
+  const {username} = req.params;
+  User.findOne({username: username})
+  .then((user) => { console.log(user)
+    res.render('auth/edit-profile', user)})
+  .catch(err => next(err))
+});
+
+router.post("/:username/projects/:projectid/edit-project", fileUploader.single('profilepicture'), (req, res, next) => {
+  const {username, projectid} = req.params;
+  console.log(projectid)
+  const {title, description, link} = req.body;
+
+  if(req.file) {
+    User.findOneAndUpdate({projectid: projectid}, {description, title, link, image: req.file.path})
+    .then(() => res.redirect(`/profile/${username}`))
+    .catch(err => next(err))
+  } else {
+    User.findOneAndUpdate({projectid: projectid}, {description, title, link, image: req.file.path})
+    .then(() => res.redirect(`/profile/${username}`))
+    .catch(err => next(err))
+}});
 
 
 module.exports = router;

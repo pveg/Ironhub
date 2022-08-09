@@ -1,10 +1,10 @@
 {{#if user}}
 <h1>Welcome to Ironhub {{user.username}}!</h1>
-<a href="/search">Search</a>
-<a href="/search/results">Search Results</a>
-<a href="/auth/logout">Logout</a>
-<a href="/profile/{{user.username}}">Profile</a>
-<a href="/{{user.username}}/projects">Projects</a>
+<button><a href="/search">Search</a></button>
+<button><a href="/search/results">Search Results</a></button>
+<button><a href="/auth/logout">Logout</a></button>
+<button><a href="/profile/{{user.username}}">Profile</a></button>
+<button><a href="/{{user.username}}/projects">Projects</a></button>
 {{else}}
 <h1>Welcome to Ironhub!</h1>
 <button><a href="/auth/login">Login</a></button>

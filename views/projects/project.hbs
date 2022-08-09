@@ -2,10 +2,15 @@
 
 {{#each user}}
     {{#each projects}}
-    <h2>{{this._id}}</h2>
+    <h1>{{this.author}}</h1>
+    <img src="{{this.image}}">
+    <h2>{{this.title}}</h2>
+    <p>{{this.description}}</p>
+    <p>{{this.link}}</p>
+    <a href="//{{this.link}}" target='_blank'>Link for the project</a>
     {{/each}}
 {{/each}}
 
-
+<a href="/{{user.username}}/projects/{{projectid}}/edit-project">Edit Project</a>
 <a href="/">Back</a>
 <a href="/{{user.username}}/projects/new">New Project</a>
