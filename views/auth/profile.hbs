@@ -1,13 +1,29 @@
-<h1>Profile</h1>
+<button><a href="/search">Search</a></button>
+<button><a href="/profile/{{user.username}}">Profile</a></button>
+<button><a href="/auth/logout">Logout</a></button>
 
+<img src="{{profilepicture}}" alt="{{course}}">
 <h1>Hello {{username}}</h1>
+
+<div class="about-me">
+<h4>About me</h4>
 <p>Name: {{name}}</p>
 <p>Surname: {{surname}}</p>
 <p>Campus: {{campus}}</p>
 <p>Course: {{course}}</p>
+<p>Location: {{location}}</p>
+<p>Email: {{email}}</p>
+<p>Website: {{website}}</p>
+<p>Linkedin: {{linkedin}}</p>
+<p>Instagram: {{instagram}}</p>
+</div>
 
-<img src="{{profilepicture}}" alt="{{course}}">
+<div class="bio">
+<h4>Bio:</h4>
+<p>{{bio}}</p>
+</div>
 
 <button><a href="/profile/{{username}}/edit-profile">Edit Profile</a></button>
 <button><a href="/{{username}}/projects">Projects</a></button>
 <button><a href="/">Back</a></button>
+<button><a href="/{{username}}/projects/new">Add Project</a></button>

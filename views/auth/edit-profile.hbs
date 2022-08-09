@@ -1,6 +1,13 @@
-<h1>Edit profile {{username}}</h1>
+<button><a href="/search">Search</a></button>
+<button><a href="/profile/{{username}}">Profile</a></button>
+<button><a href="/auth/logout">Logout</a></button>
 
 <form action="/profile/{{username}}/edit-profile" method="post" enctype='multipart/form-data'>
+
+<label for='profilepicture'>Profile Picture
+    <input type='file' name='profilepicture' id='profilepicture' class='form-control-file' />
+    <input type='text' name='previousUrl' value='{{profilepicture}}' hidden/>
+</label>
 
 <label for="name">Name
 <input type="text" name="name" value="{{name}}">
@@ -9,6 +16,7 @@
 <label for="surname">Surname
 <input type="text" name="surname" value="{{surname}}">
 </label>
+
 <label for="campus">Campus
    <select name="campus" id="campus" value="{{campus}}"> Campus
       <option value="Amsterdam">Amsterdam</option>
@@ -34,12 +42,32 @@
   </select>
 </label>
 
-<label for='profilepicture'>Profile Picture
-    <input type='file' name='profilepicture' id='profilepicture' class='form-control-file' />
-    <input type='text' name='previousUrl' value='{{profilepicture}}' hidden/>
+<label for="location">Location
+<input type="text" name="location" value="{{location}}">
 </label>
+
+<label for="email">Email
+<input type="email" name="email" value="{{email}}">
+</label>
+
+<label for="website">Website
+<input type="url" name="website" value="{{website}}">
+</label>
+
+<label for="linkedin">Linkedin
+<input type="url" name="linkedin" value="{{linkedin}}">
+</label>
+
+<label for="instagram">Instagram
+<input type="url" name="instagram" value="{{instagram}}">
+</label>
+
+<label for="bio">Bio
+<textarea name="bio" id="bio" cols="30" rows="10">{{bio}}</textarea>
+</label>
+
 
 <button type="submit">Edit Profile</button>
 </form>
-<button><a href="/">Back</a></button>
+
 <button><a href="/profile/{{username}}/delete-profile">Delete Profile</a></button>

@@ -35,7 +35,7 @@
    </select>
    </label>
 
-<label for="course">Course</label>
+   <label for="course">Course</label>
    <select name="course" id="course"> Course
       <option value="Web Dev">Web Dev</option>
       <option value="UX/UI">UX/UI</option>
@@ -44,12 +44,11 @@
    </select>
    </label>
    
-   <button type="submit">Submit</button>
+   <button type="submit">Sign Up</button>
 </form>
 
-<button><a href="/search">Search</a></button>
-<button><a href="/search/results">Search Results</a></button>
-<button><a href="/auth/logout">Logout</a></button>
+<p>Have an account?</p>
+<button><a href="/auth/login">Login</a></button>
 
 {{#if errorMessage}}
    {{errorMessage}}

@@ -1,4 +1,9 @@
-<h1>Search Page</h1>
+<button><a href="/search">Search</a></button>
+<button><a href="/profile/{{user.username}}">Profile</a></button>
+<button><a href="/auth/logout">Logout</a></button>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis cupiditate culpa, sint, provident debitis aliquid voluptatibus saepe reiciendis iste 
+   possimus ducimus illo consectetur dolore cum, repellendus tempore fuga amet inventore.</p>
 
 <form action="/search" method="POST">
     <label for="campus">Campus</label>
@@ -17,12 +22,25 @@
    </select>
    </label>
 
+   <label for="course">Course</label>
+   <select name="course" id="course"> Course
+      <option value="Web Dev">Web Dev</option>
+      <option value="UX/UI">UX/UI</option>
+      <option value="Data Analyst">Data Analyst</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+   </select>
+   </label>
+
+   <label for="Username">
+      <input type="text" name="name" placeholder="Username">
+   </label>
+
+   
    <button type="submit">Seach</button>
 
-
 </form>
-<button><a href="/">Login</a></button>
-<button><a href="/search/results">Search Results</a></button>
-<button><a href="/auth/logout">Logout</a></button>
-<button><a href="/profile/{{user.username}}">Profile</a></button>
+
+
+
+
 <button><a href="/{{user.username}}/projects">Projects</a></button>
