@@ -1,12 +1,15 @@
 <h1>Search Results</h1>
 
 {{#each users}}
+<img src="{{this.profilepicture}}" alt="{{this.username}}">
 <h1>{{this.username}}</h1>
-{{#each projects}}
+<p>{{this.course}}</p>
+<p>{{this.campus}}</p>
+{{!-- {{#each projects}}
 <img src="{{image}}">
 <h1>{{title}}</h1>
 <p>{{description}}</p>
-{{/each}}
+{{/each}} --}}
 
 {{/each}}
 
