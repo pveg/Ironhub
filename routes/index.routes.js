@@ -5,22 +5,26 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const Project = require("../models/Project.model")
 const fileUploader = require('../config/cloudinary.config');
 const Comment = require("../models/Comment.model");
-const { populate } = require("../models/User.model");
 
 
 /* DELETE - IT WORKS ON THE DATABASE BUT NOT ON THE FRONT-END */
 
 router.get('/profile/:username/delete-profile', isLoggedIn, (req, res, next) => {
   const {username} = req.params;
+
   User.findOneAndDelete({username: username})
-  .then((data) =>{
-    req.session.destroy((err) => {
-      if (err) {
-        return res
-          .status(500)
-          .render('auth/logout', { errorMessage: err.message });
-      }})
-    })
+  .then((user) =>{
+     Project.deleteMany({_id: {$in: user.projects}})
+     .then(() => {
+
+       req.session.destroy((err) => {
+         if (err) {
+           return res
+           .status(500)
+           .render('auth/logout', { errorMessage: err.message });
+          }})
+        })
+      })
     .then(() => {
   res.redirect('/auth/signup')
 })
@@ -112,16 +116,26 @@ router.get('/:username/projects/new', isLoggedIn, (req, res, next) => {
   .catch(err => next(err));
 })
 
-router.post('/:username/projects/new', isLoggedIn, (req, res, next)=>{
-  const {username} = req.params;
-  const {title, description} = req.body; //needs bodyparser(?)
-  Project.create(title, description )
-  .then((newProject) => {
-    console.log(newProject);
-    return User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
-  })
-  .then((user) => res.render(`projects/project`, {user}))
-  .catch((err) => next(err));
+router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn, async (req, res, next)=>{
+  try {
+    const {username} = req.params;
+    const {title, description} = req.body;
+    const user = req.session.user
+    if(req.file) {
+      const newProject = await Project.create({author: user._id, title, description, image: req.file.path})
+      await User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
+      res.redirect(`/${username}/projects`)
+    } else {
+
+      const newProject = await Project.create({author: user._id, title, description})
+      await User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
+      res.redirect(`/${username}/projects`)
+    }
+    
+  } catch (error) {
+    res.status(400).render("projects/new-project", {errorMessage: "Error creating project"});
+    next()
+  }
 })
 
 
