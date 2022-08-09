@@ -174,7 +174,7 @@ router.get("/projects/:projectid/edit-project", isLoggedIn, (req, res, next) => 
   .catch(err => next(err))
 });
 
-router.post("/:username/projects/:projectid/edit-project", fileUploader.single('profilepicture'), (req, res, next) => {
+router.post("/projects/:projectid/edit-project", fileUploader.single('profilepicture'), (req, res, next) => {
   const {username, projectid} = req.params;
   console.log(projectid)
   const {title, description, link} = req.body;
@@ -188,6 +188,16 @@ router.post("/:username/projects/:projectid/edit-project", fileUploader.single('
     .then(() => res.redirect(`/profile/${username}`))
     .catch(err => next(err))
 }});
+
+router.get('/projects/:projectid/delete-project', isLoggedIn, (req, res, next)=> {
+const {projectid} = req.params;
+
+  Project.findByIdAndDelete(projectid)
+    .then((deletedProject) =>{
+     console.log(deletedProject)
+     res.redirect('/search')})
+  .catch(err => res.redirect('/'))
+});
 
 
 module.exports = router;
