@@ -116,7 +116,6 @@ router.get("/:username/projects", isLoggedIn, (req, res, next) => {
   User.findOne({username: username})
   .populate('projects') 
   .then(user => {
-/*     console.log(user) */
     res.render('projects/project', {user})})
   .catch(err => next(err));
 })
@@ -126,7 +125,6 @@ router.get('/:username/projects/new', isLoggedIn, (req, res, next) => {
   User.findOne({username: username})
   .populate('projects') 
   .then(user => {
-/*     console.log(user.projects) */
     res.render('projects/new-project', {user})})
   .catch(err => next(err));
 })
@@ -157,15 +155,6 @@ router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn
 
 /* EDIT PROJECT */
 
-/* router.get('/:username/projects/:projectId/edit-project', isLoggedIn, (req,res,next)=>{
-  const {username} = req.params;
-User.findOne({username: username})
-.then(user => {
-  res.render('edit-project', user)
-})
-.catch(err => next(err))
-}) */
-
 router.get("/projects/:projectid/edit-project", isLoggedIn, (req, res, next) => {
   const {projectid} = req.params;
   Project.findById(projectid)
@@ -191,12 +180,15 @@ router.post("/projects/:projectid/edit-project", fileUploader.single('profilepic
 
 router.get('/projects/:projectid/delete-project', isLoggedIn, (req, res, next)=> {
 const {projectid} = req.params;
+const id = req.session.user._id;
 
-  Project.findByIdAndDelete(projectid)
-    .then((deletedProject) =>{
-     console.log(deletedProject)
-     res.redirect('/search')})
-  .catch(err => res.redirect('/'))
+Project.findByIdAndDelete(projectid)
+.then(() =>{
+return User.findByIdAndUpdate(id, {$pull: {projects: projectid}} )
+})
+ .then(()=> {
+   res.redirect('/search')})
+.catch(err => res.redirect('/'))
 });
 
 
