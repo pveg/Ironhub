@@ -31,7 +31,7 @@ router.get('/profile/:username/delete-profile', isLoggedIn, (req, res, next) => 
   .catch(err => res.redirect('/logout'))
 });
 
-router.get('/profile/:username/delete-project/:id', isLoggedIn, (req, res, next) => {
+/* router.get('/profile/:username/delete-project/:id', isLoggedIn, (req, res, next) => {
 
   const {username, id} = req.params;
   User.findOne({username: username})
@@ -44,7 +44,7 @@ router.get('/profile/:username/delete-project/:id', isLoggedIn, (req, res, next)
     })
   })
   .catch(err => res.redirect('/logout'))
-})
+}) */
 
 
 /* GET Home Page/Sign Up */
