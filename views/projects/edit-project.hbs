@@ -14,7 +14,8 @@
     <input type="file" name="image" value="{{image}}">
     
     <button type="submit">Edit Project</button>
+    <a href="/{{user.username}}/projects">Back</a>
 </form>
 
-<a href="/{{user.username}}/projects">Back</a>
-<a href="/">Home Page</a>
+
+<button><a href="/projects/{{id}}/delete-project/">Delete Project</a></button>
