@@ -63,8 +63,11 @@ router.get("/search", isLoggedIn, (req, res, next) => {
 //maybe need to use query to display results?
 
 router.post("/search", (req, res, next) => {
-  const { course, campus, name } = req.body;
-  res.send("search/results", { course, campus, name });
+  const { course, campus, name } = req.query;
+  User.find({username: username})
+  .then(() => {
+    res.redirect("search/results", { course, campus, name });
+  })
 });
 
 /* SEARCH RESULTS */
@@ -190,6 +193,25 @@ return User.findByIdAndUpdate(id, {$pull: {projects: projectid}} )
    res.redirect('/search')})
 .catch(err => res.redirect('/'))
 });
+
+router.post('/:projectid/comments', isLoggedIn, (req, res, next)=> {
+const {projectid} = req.params;
+const user = req.session.user;
+const comment = req.body;
+
+Project.findById(projectid)
+.populate('comments')
+.then((data) => {
+  console.log(data)
+return Comment.create(comment, {$push: {projectid: projectid}})
+.then((comment) => {
+  console.log(comment)
+  res.redirect(`/${user.username}/projects`)
+})
+.catch(err => next(err))
+})
+.catch(err => next(err))
+})
 
 
 module.exports = router;

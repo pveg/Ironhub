@@ -28,10 +28,10 @@ const projectSchema = new Schema(
       type: String,
       set: removeHttp
     },
-    comments: {
+    comments: [{
     type: Schema.Types.ObjectId,
     ref: "Comment"
-    },
+    }],
   },
   {
     timestamps: true,

@@ -9,6 +9,21 @@
     <a href="//{{this.link}}" target='_blank'>Link for the project</a>
     <a href="/projects/{{id}}/edit-project">Edit Project</a>
     <a href="/projects/{{id}}/delete-project/">DELETE</a>
+    <form action="/{{id}}/comments" method="post">
+    <label for="comments">
+        <textarea name="comments" id="comments" cols="30" rows="10">
+
+        </textarea>
+        
+    </label>
+    <button type="submit"> Send comment </button>
+    </form>
+    <div>
+        <h6>Comments</h6>
+        {{#each this.comments}}
+            <p>{{this.comment}}</p>
+        {{/each}}
+    </div>
     {{/each}}
 {{/each}}
     
