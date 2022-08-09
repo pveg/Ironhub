@@ -3,7 +3,9 @@ const { Schema, model } = require("mongoose");
 function removeHttp (link) {
   if(link.indexOf('https://') === 0){
     return link.substring(8)
-  } else {
+  } else if (link.indexOf('http://') === 0){
+    return link.substring(7);
+} else{
     return link;
   }
 }
