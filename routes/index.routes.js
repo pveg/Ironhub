@@ -5,6 +5,7 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const Project = require("../models/Project.model")
 const fileUploader = require('../config/cloudinary.config');
 const Comment = require("../models/Comment.model");
+const { populate } = require("../models/User.model");
 
 
 /* DELETE - IT WORKS ON THE DATABASE BUT NOT ON THE FRONT-END */
@@ -55,7 +56,11 @@ router.get("/", (req, res, next) => {
 
 /* SEARCH */
 
-router.get("/search", isLoggedIn, (req, res, next) => {
+router.get('/search', (req, res, next) => {
+  res.render('search')
+});
+
+router.get("/search/results", isLoggedIn, (req, res, next) => {
   const user = req.session.user
   const { course, campus, name } = req.query;
 
@@ -66,10 +71,11 @@ router.get("/search", isLoggedIn, (req, res, next) => {
       { name: name }
     ]
   })
+  .populate('projects')
   .then((users) => {
-    console.log(users)
+    res.render('search-results', {users})
   })
-  res.render("search", {user});
+.catch(err => next(err))
 });
 
 //maybe need to use query to display results?
@@ -86,9 +92,9 @@ router.get("/search", isLoggedIn, (req, res, next) => {
 
 /* router.get("/search/results", isLoggedIn, (req, res, next) => {
   const user = req.session.user
-  res.render("search-results", {user});
-}); */
-
+  res.render("search-results");
+});
+ */
 /* PROFILE */
 
 router.get('/profile/:username', isLoggedIn, (req, res, next) => {

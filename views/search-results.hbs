@@ -1,7 +1,14 @@
 <h1>Search Results</h1>
 
-{{#each}}
+{{#each users}}
+<h1>{{this.username}}</h1>
+{{#each projects}}
+<img src="{{image}}">
+<h1>{{title}}</h1>
+<p>{{description}}</p>
+{{/each}}
 
+{{/each}}
 
 <button><a href="/">Main Page</a></button>
 <button><a href="/search">Search</a></button>
