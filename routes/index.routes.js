@@ -13,9 +13,19 @@ const { populate } = require("../models/User.model");
 router.get('/profile/:username/delete-profile', isLoggedIn, (req, res, next) => {
   const {username} = req.params;
   User.findOneAndDelete({username: username})
-  .then(() => res.redirect('/logout'))
-  .catch(err => next(err));
+  .then((data) =>{
+    req.session.destroy((err) => {
+      if (err) {
+        return res
+          .status(500)
+          .render('auth/logout', { errorMessage: err.message });
+      }})
+    })
+    .then(() => {
+  res.redirect('/auth/signup')
 })
+  .catch(err => res.redirect('/logout'))
+});
 
 
 /* GET Home Page/Sign Up */
