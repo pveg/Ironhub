@@ -183,11 +183,11 @@ router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn
 
 router.get("/projects/:projectid/edit-project", isLoggedIn, (req, res, next) => {
   const {projectid} = req.params;
-  Project.findById(projectid)
-  .then((user) => { console.log(user)
-    res.render('projects/edit-project', user)})
-  .catch(err => next(err))
-});
+  const user = req.session.user
+    res.render('projects/edit-project', {user} )
+  
+  })
+
 
 router.post("/projects/:projectid/edit-project", fileUploader.single('profilepicture'), (req, res, next) => {
   const {username, projectid} = req.params;
