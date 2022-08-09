@@ -1,5 +1,5 @@
 <h1>Hello, {{user.username}}</h1>
-<form action="/{{user.username}}/projects/:projectid/edit-project" method="POST" enctype='multipart/form-data'>
+<form action="/projects/{{_id}}/edit-project" method="POST" enctype='multipart/form-data'>
 
     <label for="title">Title</label>
     <input type="text" name="title" value="{{title}}">
@@ -18,4 +18,4 @@
 
 <a href="/{{user.username}}/projects">Back</a>
 <a href="/">Home Page</a>
-<a href="/profile/{{user.username}}/delete-project/{{projects._id}}">DELETE</a>
+<a href="/profile/{{user.username}}/delete-project/{{user.projects}}">DELETE</a>

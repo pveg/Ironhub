@@ -1,5 +1,13 @@
 const { Schema, model } = require("mongoose");
 
+function removeHttp (link) {
+  if(link.indexOf('https://') === 0){
+    return link.substring(8)
+  } else {
+    return link;
+  }
+}
+
 const projectSchema = new Schema(
   {
     author: { type: Schema.Types.ObjectId, ref: "User" },
@@ -16,6 +24,7 @@ const projectSchema = new Schema(
     },
     link: {
       type: String,
+      set: removeHttp
     },
     comments: {
     type: Schema.Types.ObjectId,
@@ -27,10 +36,7 @@ const projectSchema = new Schema(
   }
 );
 
-/* projectSchema.path('link').validate((val) => {
-  urlRegex = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/;
-  return urlRegex.test(val);
-}, 'Invalid URL.'); */
+
 
 const Project = model("Project", projectSchema);
 

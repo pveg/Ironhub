@@ -116,7 +116,7 @@ router.get("/:username/projects", isLoggedIn, (req, res, next) => {
   User.findOne({username: username})
   .populate('projects') 
   .then(user => {
-    console.log(user)
+/*     console.log(user) */
     res.render('projects/project', {user})})
   .catch(err => next(err));
 })
@@ -126,7 +126,7 @@ router.get('/:username/projects/new', isLoggedIn, (req, res, next) => {
   User.findOne({username: username})
   .populate('projects') 
   .then(user => {
-    console.log(user.projects)
+/*     console.log(user.projects) */
     res.render('projects/new-project', {user})})
   .catch(err => next(err));
 })
@@ -139,11 +139,11 @@ router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn
     
     
     if(req.file) {
-      const newProject = await Project.create({author: user._id, title, description, httpremover, image: req.file.path})
+      const newProject = await Project.create({author: user._id, title, description, link, image: req.file.path})
       await User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
       res.redirect(`/${username}/projects`)
     } else {
-      const newProject = await Project.create({author: user._id, title, description, httpremover})
+      const newProject = await Project.create({author: user._id, title, description, link})
       await User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
       res.redirect(`/${username}/projects`)
     }
@@ -157,11 +157,20 @@ router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn
 
 /* EDIT PROJECT */
 
-router.get("/:username/projects/:projectid/edit-project", isLoggedIn, (req, res, next) => {
+/* router.get('/:username/projects/:projectId/edit-project', isLoggedIn, (req,res,next)=>{
   const {username} = req.params;
-  User.findOne({username: username})
+User.findOne({username: username})
+.then(user => {
+  res.render('edit-project', user)
+})
+.catch(err => next(err))
+}) */
+
+router.get("/projects/:projectid/edit-project", isLoggedIn, (req, res, next) => {
+  const {projectid} = req.params;
+  Project.findById(projectid)
   .then((user) => { console.log(user)
-    res.render('auth/edit-profile', user)})
+    res.render('projects/edit-project', user)})
   .catch(err => next(err))
 });
 
