@@ -25,6 +25,10 @@ const projectName = "Ironhub";
 app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
 
 // 👇 Start handling routes here
+
+const search = require("./routes/index.routes");
+app.use('/', search);
+
 const index = require("./routes/index.routes");
 app.use("/", index);
 

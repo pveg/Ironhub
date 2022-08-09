@@ -57,25 +57,37 @@ router.get("/", (req, res, next) => {
 
 router.get("/search", isLoggedIn, (req, res, next) => {
   const user = req.session.user
+  const { course, campus, name } = req.query;
+
+  User.find({
+    $or: [
+      { course: course },
+      { campus: campus },
+      { name: name }
+    ]
+  })
+  .then((users) => {
+    console.log(users)
+  })
   res.render("search", {user});
 });
 
 //maybe need to use query to display results?
 
-router.post("/search", (req, res, next) => {
+/* router.post("/search", (req, res, next) => {
   const { course, campus, name } = req.query;
   User.find({username: username})
   .then(() => {
     res.redirect("search/results", { course, campus, name });
   })
-});
+}); */
 
 /* SEARCH RESULTS */
 
-router.get("/search/results", isLoggedIn, (req, res, next) => {
+/* router.get("/search/results", isLoggedIn, (req, res, next) => {
   const user = req.session.user
   res.render("search-results", {user});
-});
+}); */
 
 /* PROFILE */
 
@@ -123,6 +135,10 @@ router.get("/:username/projects", isLoggedIn, (req, res, next) => {
   .catch(err => next(err));
 })
 
+
+/* NEW PROJECT */
+
+
 router.get('/:username/projects/new', isLoggedIn, (req, res, next) => {
   const {username} = req.params;
   User.findOne({username: username})
@@ -158,6 +174,7 @@ router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn
 
 /* EDIT PROJECT */
 
+
 router.get("/projects/:projectid/edit-project", isLoggedIn, (req, res, next) => {
   const {projectid} = req.params;
   Project.findById(projectid)
@@ -181,6 +198,10 @@ router.post("/projects/:projectid/edit-project", fileUploader.single('profilepic
     .catch(err => next(err))
 }});
 
+
+/* DELETE PROJECT */
+
+
 router.get('/projects/:projectid/delete-project', isLoggedIn, (req, res, next)=> {
 const {projectid} = req.params;
 const id = req.session.user._id;
@@ -193,6 +214,10 @@ return User.findByIdAndUpdate(id, {$pull: {projects: projectid}} )
    res.redirect('/search')})
 .catch(err => res.redirect('/'))
 });
+
+
+/* COMMENTS */
+
 
 router.post('/:projectid/comments', isLoggedIn, (req, res, next)=> {
 const projectid = req.params.id;
