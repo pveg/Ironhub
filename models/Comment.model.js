@@ -10,12 +10,12 @@ const commentSchema = new Schema(
           type: String,
         },
         comment: {
-          type: String,
         },
       },
   {
     timestamps: true,
-  }
+  },
+  { typeKey: '$type' }
 );
 
 const Comment = model("Comment", commentSchema);

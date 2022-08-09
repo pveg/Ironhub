@@ -195,20 +195,16 @@ return User.findByIdAndUpdate(id, {$pull: {projects: projectid}} )
 });
 
 router.post('/:projectid/comments', isLoggedIn, (req, res, next)=> {
-const {projectid} = req.params;
+const projectid = req.params.id;
 const user = req.session.user;
-const comment = req.body;
+const comment = JSON.parse(JSON.stringify(req.body));
 
-Project.findById(projectid)
-.populate('comments')
-.then((data) => {
-  console.log(data)
-return Comment.create(comment, {$push: {projectid: projectid}})
-.then((comment) => {
-  console.log(comment)
-  res.redirect(`/${user.username}/projects`)
+Project.findByIdAndUpdate(projectid)
+.then(()=> {
+return Comment.create({author: user, project: projectid, comment})
 })
-.catch(err => next(err))
+.then(() => {
+  res.redirect(`/${user.username}/projects`)
 })
 .catch(err => next(err))
 })
