@@ -1,5 +1,16 @@
 const { Schema, model } = require("mongoose");
 
+function removeHttp (link) {
+  if(link.indexOf('https://') === 0){
+    return link.substring(8)
+  } else if (link.indexOf('http://') === 0){
+    return link.substring(7);
+} else{
+    return link;
+  }
+}
+
+
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema(
   {
@@ -48,18 +59,21 @@ const userSchema = new Schema(
       type: String
     },
     website: {
-      type: String
+      type: String,
+      set: removeHttp
     },
     linkedin: {
-      type: String
+      type: String,
+      set: removeHttp
     },
     instagram: {
-      type: String
+      type: String,
+      set: removeHttp
     },
     bio: {
       type: String
     },
-    favorites: [{type: [Schema.Types.ObjectId],ref: "Project"}],
+    /* favorites: [{type: [Schema.Types.ObjectId],ref: "Project"}], */
     projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
   },
   {
