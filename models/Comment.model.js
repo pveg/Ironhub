@@ -7,15 +7,17 @@ const commentSchema = new Schema(
         ref: "Project"
       },
         author: {
-          type: String,
+          type: Schema.Types.ObjectId,
+          ref: 'User'
         },
         comment: {
+          type: String,
+          required: true
         },
       },
   {
     timestamps: true,
   },
-  { typeKey: '$type' }
 );
 
 const Comment = model("Comment", commentSchema);

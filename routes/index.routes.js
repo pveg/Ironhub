@@ -57,7 +57,8 @@ router.get("/", (req, res, next) => {
 /* SEARCH */
 
 router.get('/search', (req, res, next) => {
-  res.render('search')
+  const user = req.session.user
+  res.render('search', {user})
 });
 
 /* Search results */
@@ -73,8 +74,8 @@ router.get("/search/results", isLoggedIn, (req, res, next) => {
     ]
   })
   .populate('projects')
-  .then((users) => {
-    res.render('search-results', {users})
+  .then((results) => {
+    res.render('search-results', {results, user})
   })
 .catch(err => next(err))
 });
@@ -104,11 +105,11 @@ router.post("/profile/:username/edit-profile", fileUploader.single('profilepictu
   const { password, name, surname, campus, course } = req.body;
 
   if(req.file) {
-    User.findOneAndUpdate({username: username}, {password, name, surname, campus, course, username, profilepicture: req.file.path})
+    User.findOneAndUpdate({username: username}, {location, email, website, linkedin, instagram, bio, password, name, surname, campus, course, username, profilepicture: req.file.path})
     .then(() => res.redirect(`/profile/${username}`))
     .catch(err => next(err))
   } else {
-    User.findOneAndUpdate({username: username}, {password, name, surname, campus, course, username})
+    User.findOneAndUpdate({username: username}, {location, email, website, linkedin, instagram, bio, password, name, surname, campus, course, username})
     .then(() => res.redirect(`/profile/${username}`))
     .catch(err => next(err))
   }
@@ -119,7 +120,14 @@ router.post("/profile/:username/edit-profile", fileUploader.single('profilepictu
 router.get("/:username/projects", isLoggedIn, (req, res, next) => {
   const {username} = req.params;
   User.findOne({username: username})
-  .populate('projects') 
+  .populate('projects')
+  .populate({
+    path: 'projects',
+    populate: {
+      path: 'comments',
+      model: 'Comment',
+    }
+  })
   .then(user => {
     res.render('projects/project', {user})})
   .catch(err => next(err));
@@ -168,22 +176,24 @@ router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn
 router.get("/projects/:projectid/edit-project", isLoggedIn, (req, res, next) => {
   const {projectid} = req.params;
   const user = req.session.user
-    res.render('projects/edit-project', {user} )
+    res.render('projects/edit-project', {user, projectid} )
   
   })
 
 
 router.post("/projects/:projectid/edit-project", fileUploader.single('profilepicture'), (req, res, next) => {
-  const {username, projectid} = req.params;
+  const {projectid} = req.params;
+  const username = req.session.user.username;
   console.log(projectid)
   const {title, description, link} = req.body;
 
   if(req.file) {
-    User.findOneAndUpdate({projectid: projectid}, {description, title, link, image: req.file.path})
+    Project.findByIdAndUpdate( projectid, {description, title, link, image: req.file.path}, {new: true})
     .then(() => res.redirect(`/profile/${username}`))
     .catch(err => next(err))
-  } else {
-    User.findOneAndUpdate({projectid: projectid}, {description, title, link, image: req.file.path})
+  } 
+  if(!req.file) {
+    Project.findByIdAndUpdate( projectid, {description, title, link}, {new: true})
     .then(() => res.redirect(`/profile/${username}`))
     .catch(err => next(err))
 }});
@@ -209,19 +219,22 @@ return User.findByIdAndUpdate(id, {$pull: {projects: projectid}} )
 /* COMMENTS */
 
 
-router.post('/:projectid/comments', isLoggedIn, (req, res, next)=> {
-const projectid = req.params.id;
-const user = req.session.user;
-const comment = JSON.parse(JSON.stringify(req.body));
+router.post('/:projectid/comments', isLoggedIn, async (req, res, next)=> {
+  const {projectid} = req.params;
+  const user = req.session.user;
+  const {comments} = req.body;
 
-Project.findByIdAndUpdate(projectid)
-.then(()=> {
-return Comment.create({author: user, project: projectid, comment})
-})
-.then(() => {
-  res.redirect(`/${user.username}/projects`)
-})
-.catch(err => next(err))
+  try {
+  const createdComment = await Comment.create({project: projectid, author: user._id, comment: comments})   
+
+   await Project.findByIdAndUpdate(projectid, {$push: {comments: createdComment._id}})
+
+   res.redirect(`/${user.username}/projects`)
+
+
+  } catch (error) {
+    next(error)
+  }
 })
 
 
