@@ -16,6 +16,10 @@ const hbs = require("hbs");
 
 const app = express();
 
+let favicon = require('serve-favicon');
+
+app.use(favicon(__dirname + '/public/images/favicon_package_v0/favicon.ico'));
+
 hbs.registerHelper("ifEquals", function (a, b, options) {
     if (a == b) { return options.fn(this); }
     return options.inverse(this);
