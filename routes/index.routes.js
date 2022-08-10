@@ -60,6 +60,7 @@ router.get('/search', (req, res, next) => {
   res.render('search')
 });
 
+/* Search results */
 router.get("/search/results", isLoggedIn, (req, res, next) => {
   const user = req.session.user
   const { course, campus, name } = req.query;
@@ -78,23 +79,6 @@ router.get("/search/results", isLoggedIn, (req, res, next) => {
 .catch(err => next(err))
 });
 
-//maybe need to use query to display results?
-
-/* router.post("/search", (req, res, next) => {
-  const { course, campus, name } = req.query;
-  User.find({username: username})
-  .then(() => {
-    res.redirect("search/results", { course, campus, name });
-  })
-}); */
-
-/* SEARCH RESULTS */
-
-/* router.get("/search/results", isLoggedIn, (req, res, next) => {
-  const user = req.session.user
-  res.render("search-results");
-});
- */
 /* PROFILE */
 
 router.get('/profile/:username', isLoggedIn, (req, res, next) => {
