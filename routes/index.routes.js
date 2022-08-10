@@ -55,7 +55,7 @@ router.get('/profile/:username/delete-profile', isLoggedIn, (req, res, next) => 
 /* GET Home Page/Sign Up */
 router.get("/", (req, res, next) => {
   const currentUser = req.session.user
-  res.render("index", {currentUser});
+  res.render("auth/login", {currentUser});
 });
 
 /* SEARCH */
