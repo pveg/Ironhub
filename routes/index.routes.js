@@ -56,7 +56,7 @@ router.get("/", (req, res, next) => {
 
 /* SEARCH */
 
-router.get('/search', (req, res, next) => {
+router.get('/search', isLoggedIn, (req, res, next) => {
   const user = req.session.user
   res.render('search', {user})
 });

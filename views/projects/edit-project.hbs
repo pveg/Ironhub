@@ -13,11 +13,11 @@
     <label for="image">Image</label>
     <input type="file" name="image" value="{{image}}">
     
-    {{#ifEquals user.username currentUser}}
+   {{!--  {{#ifEquals user.username currentUser}} --}}
     <button type="submit">Edit Project</button>
-    {{/ifEquals}}
+    <button><a href="/projects/{{projectid}}/delete-project/">Delete Project</a></button>
+{{!--     {{/ifEquals}} --}}
     <a href="/{{user.username}}/projects">Back</a>
 </form>
 
 
-<button><a href="/projects/{{projectid}}/delete-project/">Delete Project</a></button>

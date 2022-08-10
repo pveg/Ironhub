@@ -9,8 +9,25 @@
   </head>
 
   <body>
-
+    <div>
+    <nav>
+      <ul>
+        <li>
+          <a href="/search">Search</a>
+        </li>
+        <li>
+          <a href="/profile/{{user.username}}">Profile</a>
+        </li>
+        <li>
+          <a href="/auth/logout">Logout</a>
+        </li>
+      </ul>
+    </nav>
+</div>
+ 
     {{{body}}}
+
+
 
     <script src="/js/script.js"></script>
   </body>

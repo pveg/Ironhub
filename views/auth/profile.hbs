@@ -1,9 +1,4 @@
-<button><a href="/search">Search</a></button>
-<button><a href="/profile/{{username}}">Profile</a></button>
-<button><a href="/auth/logout">Logout</a></button>
-
 <img src="{{profilepicture}}" alt="{{course}}">
-<h1>Hello {{username}}</h1>
 
 <div class="about-me">
 <h4>About me</h4>
@@ -23,10 +18,12 @@
 <p>{{bio}}</p>
 </div>
 
-    {{#ifEquals username currentUser.username}}
+{{!-- {{#ifEquals username currentUser.username}} --}}
+<h1>Hello {{username}}</h1>
 <button><a href="/profile/{{username}}/edit-profile">Edit Profile</a></button>
-
 <button><a href="/{{username}}/projects/new">Add Project</a></button>
-{{/ifEquals}}
+{{!-- {{/ifEquals}} --}}
+
+
 <button><a href="/{{username}}/projects">Projects</a></button>
 <button><a href="/">Back</a></button>

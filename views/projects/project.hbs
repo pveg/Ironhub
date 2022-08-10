@@ -7,7 +7,7 @@
     <p>{{this.description}}</p>
     <p>{{this.link}}</p>
     <a href="//{{this.link}}" target='_blank'>Link for the project</a>
-    <a href="/projects/{{this._id}}/edit-project">Edit Project</a>
+     <a href="/projects/{{this._id}}/edit-project">Edit Project</a>
     <form action="/{{this._id}}/comments" method="post">
     <label for="comments">
     <input type="text" name="comments">
@@ -24,6 +24,9 @@
     </div>
     {{/each}}
 {{/each}}
+
+{{!-- {{#ifEquals user.username currentUser}} --}}
+    <a href="/{{user.username}}/projects/new">New Project</a>
+{{!-- {{/ifEquals}} --}}
     
     <a href="/profile/{{user.username}}">Back to Profile</a>
-    <a href="/{{user.username}}/projects/new">New Project</a>
