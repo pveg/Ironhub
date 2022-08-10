@@ -94,24 +94,34 @@ router.get('/profile/:username', isLoggedIn, (req, res, next) => {
 
 router.get("/profile/:username/edit-profile", isLoggedIn, (req, res, next) => {
   const {username} = req.params;
-  User.findOne({username: username})
-  .then((user) => { console.log(user)
-    res.render('auth/edit-profile', user)})
-  .catch(err => next(err))
+  const currentUser = req.session.user
+  if(username !== req.session.user.username) {
+    return res.redirect(`/profile/${username}`)
+  } else {
+
+    User.findOne({username: username})
+    .then((user) => { console.log(user)
+      res.render('auth/edit-profile', {user, currentUser})})
+      .catch(err => next(err))
+    }
 });
 
 router.post("/profile/:username/edit-profile", fileUploader.single('profilepicture'), (req, res, next) => {
   const {username} = req.params;
   const {location, email, website, linkedin, instagram, bio, password, name, surname, campus, course } = req.body;
-
-  if(req.file) {
-    User.findOneAndUpdate({username: username}, {location, email, website, linkedin, instagram, bio, password, name, surname, campus, course, username, profilepicture: req.file.path})
-    .then(() => res.redirect(`/profile/${username}`))
-    .catch(err => next(err))
+  if(username !== req.session.user.username) {
+    return;
   } else {
-    User.findOneAndUpdate({username: username}, {location, email, website, linkedin, instagram, bio, password, name, surname, campus, course, username})
-    .then(() => res.redirect(`/profile/${username}`))
-    .catch(err => next(err))
+
+    if(req.file) {
+      User.findOneAndUpdate({username: username}, {location, email, website, linkedin, instagram, bio, password, name, surname, campus, course, username, profilepicture: req.file.path})
+      .then(() => res.redirect(`/profile/${username}`))
+      .catch(err => next(err))
+    } else {
+      User.findOneAndUpdate({username: username}, {location, email, website, linkedin, instagram, bio, password, name, surname, campus, course, username})
+      .then(() => res.redirect(`/profile/${username}`))
+      .catch(err => next(err))
+    }
   }
 });
 

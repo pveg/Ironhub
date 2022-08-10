@@ -13,7 +13,9 @@
     <label for="image">Image</label>
     <input type="file" name="image" value="{{image}}">
     
+    {{#ifEquals user.username currentUser}}
     <button type="submit">Edit Project</button>
+    {{/ifEquals}}
     <a href="/{{user.username}}/projects">Back</a>
 </form>
 

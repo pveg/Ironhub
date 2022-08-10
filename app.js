@@ -16,6 +16,11 @@ const hbs = require("hbs");
 
 const app = express();
 
+hbs.registerHelper("ifEquals", function (a, b, options) {
+    if (a == b) { return options.fn(this); }
+    return options.inverse(this);
+});
+
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
