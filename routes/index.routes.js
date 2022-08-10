@@ -102,7 +102,7 @@ router.get("/profile/:username/edit-profile", isLoggedIn, (req, res, next) => {
 
 router.post("/profile/:username/edit-profile", fileUploader.single('profilepicture'), (req, res, next) => {
   const {username} = req.params;
-  const { password, name, surname, campus, course } = req.body;
+  const {location, email, website, linkedin, instagram, bio, password, name, surname, campus, course } = req.body;
 
   if(req.file) {
     User.findOneAndUpdate({username: username}, {location, email, website, linkedin, instagram, bio, password, name, surname, campus, course, username, profilepicture: req.file.path})
