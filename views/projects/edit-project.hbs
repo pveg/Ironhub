@@ -1,4 +1,4 @@
-<h1>Hello, {{user.username}}</h1>
+<h1>Hello, {{currentUser.username}}</h1>
 <form action="/projects/{{projectid}}/edit-project" method="POST" enctype='multipart/form-data'>
 
     <label for="title">Title</label>
@@ -17,7 +17,7 @@
     <button type="submit">Edit Project</button>
     <button><a href="/projects/{{projectid}}/delete-project/">Delete Project</a></button>
 {{!--     {{/ifEquals}} --}}
-    <a href="/{{user.username}}/projects">Back</a>
+    <a href="/{{currentUser.username}}/projects">Back</a>
 </form>
 
 

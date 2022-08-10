@@ -1,29 +1,29 @@
-<img src="{{profilepicture}}" alt="{{course}}">
+<img src="{{user.profilepicture}}" alt="{{course}}">
 
 <div class="about-me">
 <h4>About me</h4>
-<p>Name: {{name}}</p>
-<p>Surname: {{surname}}</p>
-<p>Campus: {{campus}}</p>
-<p>Course: {{course}}</p>
-<p>Location: {{location}}</p>
-<p>Email: {{email}}</p>
-<p>Website: <a href="//{{website}}" target='_blank'>{{website}}</a></p>
-<p>Linkedin: <a href="//{{linkedin}}" target='_blank'>{{linkedin}}</a></p>
-<p>Instagram: <a href="//{{instagram}}" target='_blank'>{{instagram}}</a></p>
+<p>Name: {{user.name}}</p>
+<p>Surname: {{user.surname}}</p>
+<p>Campus: {{user.campus}}</p>
+<p>Course: {{user.course}}</p>
+<p>Location: {{user.location}}</p>
+<p>Email: {{user.email}}</p>
+<p>Website: <a href="//{{user.website}}" target='_blank'>{{user.website}}</a></p>
+<p>Linkedin: <a href="//{{user.linkedin}}" target='_blank'>{{user.linkedin}}</a></p>
+<p>Instagram: <a href="//{{user.instagram}}" target='_blank'>{{user.instagram}}</a></p>
 </div>
 
 <div class="bio">
 <h4>Bio:</h4>
-<p>{{bio}}</p>
+<p>{{user.bio}}</p>
 </div>
 
-{{!-- {{#ifEquals username currentUser.username}} --}}
-<h1>Hello {{username}}</h1>
-<button><a href="/profile/{{username}}/edit-profile">Edit Profile</a></button>
-<button><a href="/{{username}}/projects/new">Add Project</a></button>
-{{!-- {{/ifEquals}} --}}
+{{#ifEquals user.username currentUser.username}}
+<h1>Hello {{currentUser.username}}</h1>
+<button><a href="/profile/{{currentUser.username}}/edit-profile">Edit Profile</a></button>
+<button><a href="/{{currentUser.username}}/projects/new">Add Project</a></button>
+{{/ifEquals}}
 
 
-<button><a href="/{{username}}/projects">Projects</a></button>
-<button><a href="/">Back</a></button>
+<button><a href="/{{user.username}}/projects">Projects</a></button>
+<button><a href="/search">Back</a></button>

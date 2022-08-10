@@ -9,6 +9,8 @@
   </head>
 
   <body>
+
+    {{#if currentUser}}
     <div>
     <nav>
       <ul>
@@ -16,7 +18,7 @@
           <a href="/search">Search</a>
         </li>
         <li>
-          <a href="/profile/{{user.username}}">Profile</a>
+          <a href="/profile/{{currentUser.username}}">Profile</a>
         </li>
         <li>
           <a href="/auth/logout">Logout</a>
@@ -24,6 +26,7 @@
       </ul>
     </nav>
 </div>
+{{/if}}
  
     {{{body}}}
 

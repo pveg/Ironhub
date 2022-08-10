@@ -12,24 +12,28 @@ const { populate } = require("../models/User.model");
 
 router.get('/profile/:username/delete-profile', isLoggedIn, (req, res, next) => {
   const {username} = req.params;
-
-  User.findOneAndDelete({username: username})
-  .then((user) =>{
-     Project.deleteMany({_id: {$in: user.projects}})
-     .then(() => {
-
-       req.session.destroy((err) => {
-         if (err) {
-           return res
-           .status(500)
-           .render('auth/logout', { errorMessage: err.message });
-          }})
+  
+  if (req.session.user.username !== username) {
+    return res.redirect("/search")  
+  } else {
+    User.findOneAndDelete({username: username})
+    .then((user) =>{
+       Project.deleteMany({_id: {$in: user.projects}})
+       .then(() => {
+  
+         req.session.destroy((err) => {
+           if (err) {
+             return res
+             .status(500)
+             .render('auth/logout', { errorMessage: err.message });
+            }})
+          })
         })
-      })
-    .then(() => {
-  res.redirect('/auth/signup')
-})
+      .then(() => {
+    res.redirect('/auth/signup')
+  })
   .catch(err => res.redirect('/logout'))
+  }
 });
 
 /* router.get('/profile/:username/delete-project/:id', isLoggedIn, (req, res, next) => {
@@ -50,20 +54,20 @@ router.get('/profile/:username/delete-profile', isLoggedIn, (req, res, next) => 
 
 /* GET Home Page/Sign Up */
 router.get("/", (req, res, next) => {
-  const user = req.session.user
-  res.render("index", {user});
+  const currentUser = req.session.user
+  res.render("index", {currentUser});
 });
 
 /* SEARCH */
 
 router.get('/search', isLoggedIn, (req, res, next) => {
-  const user = req.session.user
-  res.render('search', {user})
+  const currentUser = req.session.user
+  res.render('search', {currentUser})
 });
 
 /* Search results */
 router.get("/search/results", isLoggedIn, (req, res, next) => {
-  const user = req.session.user
+  const currentUser = req.session.user
   const { course, campus, name } = req.query;
 
   User.find({
@@ -75,7 +79,7 @@ router.get("/search/results", isLoggedIn, (req, res, next) => {
   })
   .populate('projects')
   .then((results) => {
-    res.render('search-results', {results, user})
+    res.render('search-results', {results, currentUser})
   })
 .catch(err => next(err))
 });
@@ -84,9 +88,11 @@ router.get("/search/results", isLoggedIn, (req, res, next) => {
 
 router.get('/profile/:username', isLoggedIn, (req, res, next) => {
   const {username} = req.params;
+  const currentUser = req.session.user
+
   User.findOne({username: username})
   .then(user => {
-    res.render('auth/profile', user)})
+    res.render('auth/profile', {currentUser, user})})
   .catch(err => next(err));
 })
 
@@ -129,6 +135,7 @@ router.post("/profile/:username/edit-profile", fileUploader.single('profilepictu
 
 router.get("/:username/projects", isLoggedIn, (req, res, next) => {
   const {username} = req.params;
+  const currentUser = req.session.user
   User.findOne({username: username})
   .populate('projects')
   .populate({
@@ -139,7 +146,7 @@ router.get("/:username/projects", isLoggedIn, (req, res, next) => {
     }
   })
   .then(user => {
-    res.render('projects/project', {user})})
+    res.render('projects/project', {user, currentUser})})
   .catch(err => next(err));
 })
 
@@ -161,17 +168,23 @@ router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn
     const {username} = req.params;
     const {title, description, link} = req.body;
     const user = req.session.user;
-    
-    
-    if(req.file) {
-      const newProject = await Project.create({author: user._id, title, description, link, image: req.file.path})
-      await User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
-      res.redirect(`/${username}/projects`)
+
+    if (user.username !== username) {
+      return res.redirect("/search")
     } else {
-      const newProject = await Project.create({author: user._id, title, description, link})
-      await User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
-      res.redirect(`/${username}/projects`)
+      if(req.file) {
+        const newProject = await Project.create({author: user._id, title, description, link, image: req.file.path})
+        await User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
+        res.redirect(`/${username}/projects`)
+      } else {
+        const newProject = await Project.create({author: user._id, title, description, link})
+        await User.findOneAndUpdate({username: username}, { $push: { projects: newProject._id } });
+        res.redirect(`/${username}/projects`)
+      }
+
     }
+    
+    
     
   } catch (error) {
     res.status(400).render("projects/new-project", {errorMessage: "Error creating project"});
@@ -185,8 +198,8 @@ router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn
 
 router.get("/projects/:projectid/edit-project", isLoggedIn, (req, res, next) => {
   const {projectid} = req.params;
-  const user = req.session.user
-    res.render('projects/edit-project', {user, projectid} )
+  const currentUser = req.session.user
+    res.render('projects/edit-project', {currentUser, projectid} )
   
   })
 
@@ -196,16 +209,19 @@ router.post("/projects/:projectid/edit-project", fileUploader.single('profilepic
   const username = req.session.user.username;
   console.log(projectid)
   const {title, description, link} = req.body;
-
-  if(req.file) {
-    Project.findByIdAndUpdate( projectid, {description, title, link, image: req.file.path}, {new: true})
-    .then(() => res.redirect(`/profile/${username}`))
-    .catch(err => next(err))
-  } 
-  if(!req.file) {
-    Project.findByIdAndUpdate( projectid, {description, title, link}, {new: true})
-    .then(() => res.redirect(`/profile/${username}`))
-    .catch(err => next(err))
+  if(username !== req.session.user.username) {
+    return res.redirect("/search")
+  } else {
+    if(req.file) {
+      Project.findByIdAndUpdate( projectid, {description, title, link, image: req.file.path}, {new: true})
+      .then(() => res.redirect(`/profile/${username}`))
+      .catch(err => next(err))
+    } 
+    if(!req.file) {
+      Project.findByIdAndUpdate( projectid, {description, title, link}, {new: true})
+      .then(() => res.redirect(`/profile/${username}`))
+      .catch(err => next(err))
+    }
 }});
 
 
@@ -213,33 +229,34 @@ router.post("/projects/:projectid/edit-project", fileUploader.single('profilepic
 
 
 router.get('/projects/:projectid/delete-project', isLoggedIn, (req, res, next)=> {
-const {projectid} = req.params;
+const {projectid, username} = req.params;
 const id = req.session.user._id;
+const currentUser = req.session.user
 
 Project.findByIdAndDelete(projectid)
 .then(() =>{
 return User.findByIdAndUpdate(id, {$pull: {projects: projectid}} )
 })
  .then(()=> {
-   res.redirect('/search')})
-.catch(err => res.redirect('/'))
+   res.redirect(`/profile/${currentUser.username}`)})
+.catch(err => next(err))
 });
 
 
 /* COMMENTS */
 
 
-router.post('/:projectid/comments', isLoggedIn, async (req, res, next)=> {
-  const {projectid} = req.params;
+router.post('/:projectid/comments/:username', isLoggedIn, async (req, res, next)=> {
+  const {projectid, username} = req.params;
   const user = req.session.user;
   const {comments} = req.body;
 
   try {
   const createdComment = await Comment.create({project: projectid, author: user._id, comment: comments})   
 
-   await Project.findByIdAndUpdate(projectid, {$push: {comments: createdComment._id}})
+   await Project.findByIdAndUpdate(projectid, {$push: {comments: createdComment._id}}).populate("author")
 
-   res.redirect(`/${user.username}/projects`)
+   res.redirect(`/${username}/projects`)
 
 
   } catch (error) {

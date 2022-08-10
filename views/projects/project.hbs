@@ -7,8 +7,10 @@
     <p>{{this.description}}</p>
     <p>{{this.link}}</p>
     <a href="//{{this.link}}" target='_blank'>Link for the project</a>
+    {{#ifEquals ../../user.username ../../currentUser.username}}
      <a href="/projects/{{this._id}}/edit-project">Edit Project</a>
-    <form action="/{{this._id}}/comments" method="post">
+     {{/ifEquals}}
+    <form action="/{{this._id}}/comments/{{../../user.username}}" method="post">
     <label for="comments">
     <input type="text" name="comments">
         
@@ -25,8 +27,8 @@
     {{/each}}
 {{/each}}
 
-{{!-- {{#ifEquals user.username currentUser}} --}}
+{{#ifEquals user.username currentUser.username}}
     <a href="/{{user.username}}/projects/new">New Project</a>
-{{!-- {{/ifEquals}} --}}
+{{/ifEquals}}
     
     <a href="/profile/{{user.username}}">Back to Profile</a>
