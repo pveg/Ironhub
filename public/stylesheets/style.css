@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap');
+
 body {
   padding: 0;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Anonymous Pro', monospace;
 }
 
 a {
@@ -23,7 +25,54 @@ li {
   display: inline;
 }
 
+
+/* 404 */
+
 .not-found {
   width: 100vw;
   height: 100vh;
+}
+
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: "Arvo", serif;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #2392dc;
+  margin: 20px 0;
+  display: inline-block;
+  border-radius: 25px;
+}
+.contant_box_404 {
+  margin-top: -50px;
+}
+
+.link2_404 {
+  color: rgb(105, 215, 88) !important;
+  display: inline-block;
+  top: -50px;
+  font-size: 5px;
+  text-decoration: none;
 }

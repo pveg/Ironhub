@@ -1,26 +1,34 @@
+<iframe class="z-0 h-full w-full" src='https://my.spline.design/bandingcopy-911fb32df568877dfd6accf77c314a29/' frameborder='0'>
+</iframe>
+<div class="card w-96 glass z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+  <figure><img class="w-20 mt-4" src="/images/ironhub_nobg.png" alt="Ironhub"></figure>
+
+  <div class="card-body">
+
 <form action="/auth/signup" method="POST">
-   <label for="Username">
-      <input type="text" name="username" placeholder="Username">
+     <label for="Username">
+      <input class="input input-bordered w-full max-w-xs mt-1 text-center opacity-95" type="text" name="username" placeholder="Username">
    </label>
    
    <label for="Name">
-      <input type="text" name="name" placeholder="Name">
+      <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="text" name="name" placeholder="Name">
    </label>
 
-   <label for="surname">
-      <input type="text" name="surname" placeholder="Surname">
+   <label for="Surname">
+      <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="text" name="surname" placeholder="Surname">
    </label>
 
    <label for="ironpass">
-      <input type="password" name="ironpass" placeholder="IronPass">
+      <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="password" name="ironpass" placeholder="IronPass">
    </label>
 
    <label for="Password">
-      <input type="password" name="password" placeholder="Password">
+      <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="password" name="password" placeholder="Password">
    </label>
 
-   <label for="campus">Campus</label>
-   <select name="campus" id="campus"> Campus
+    <label for="Campus"></label>
+   <select class="select select-bordered w-full max-w-xs text-center mt-4 opacity-95" name="campus" id="campus"> Campus
+      <option value="">Select Campus</option>
       <option value="Amsterdam">Amsterdam</option>
       <option value="Barcelona">Barcelona</option>
       <option value="Berlin">Berlin</option>
@@ -35,21 +43,30 @@
    </select>
    </label>
 
-   <label for="course">Course</label>
-   <select name="course" id="course"> Course
+     <label for="course"></label>
+
+      <select class="select select-bordered w-full max-w-xs mt-4 text-center opacity-95"name="course" id="course"> Course
+       <option value="">Select Course</option>
       <option value="Web Dev">Web Dev</option>
       <option value="UX/UI">UX/UI</option>
       <option value="Data Analyst">Data Analyst</option>
       <option value="Cybersecurity">Cybersecurity</option>
    </select>
    </label>
-   
-   <button type="submit">Sign Up</button>
-</form>
 
-<p>Have an account?</p>
-<button><a href="/auth/login">Login</a></button>
+   <div class="card-actions justify-center">
+   <button class="btn btn-sm btn-wide text-white btn-outline mt-6" type="submit">Sign up</button>
+</form>
+   </div>
 
 {{#if errorMessage}}
-   {{errorMessage}}
+<div id="alert-additional-content-2" class="p-2 mb-5 border border-red-200 rounded-lg bg-red-50 dark:bg-red-200" role="alert">
+  <div class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">
+    {{errorMessage}}
+    <p class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">Please, reload the page</p>
+  </div>
+</div>
 {{/if}}
+
+</div>
+</div>

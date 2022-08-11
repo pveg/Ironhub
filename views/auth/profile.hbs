@@ -1,29 +1,36 @@
-<img src="{{user.profilepicture}}" alt="{{course}}">
 
-<div class="about-me">
-<h4>About me</h4>
-<p>Name: {{user.name}}</p>
-<p>Surname: {{user.surname}}</p>
-<p>Campus: {{user.campus}}</p>
-<p>Course: {{user.course}}</p>
-<p>Location: {{user.location}}</p>
-<p>Email: {{user.email}}</p>
-<p>Website: <a href="//{{user.website}}" target='_blank'>{{user.website}}</a></p>
-<p>Linkedin: <a href="//{{user.linkedin}}" target='_blank'>{{user.linkedin}}</a></p>
-<p>Instagram: <a href="//{{user.instagram}}" target='_blank'>{{user.instagram}}</a></p>
+<iframe class="z-0 h-full w-full" src='https://my.spline.design/bandingcopy-911fb32df568877dfd6accf77c314a29/' frameborder='0'>
+</iframe>
+
+<div class="card w-96 glass z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+
+<div class="avatar justify-center">
+  <div class="w-24 rounded-full mt-2">
+    <img src="{{user.profilepicture}}" />
+  </div>
 </div>
 
-<div class="bio">
-<h4>Bio:</h4>
-<p>{{user.bio}}</p>
-</div>
+  <div class="card-body">
+{{!--     <h2 class="card-title justify-center"> {{currentUser.username}}</h2> --}}
+    <h2 class="card-title justify-center text-white"> {{user.name}} {{user.surname}}</h2>
+    <h2 class="card-title justify-center text-white"> Campus: {{user.campus}}</h2>
+    <h2 class="card-title justify-center text-white"> Course: {{user.course}}</h2>
+    <h2 class="card-title justify-center text-white"> Location: {{user.location}}</h2>
+    <h2 class="card-title justify-center text-white"> Email: {{user.email}}</h2>
+        <h2 class="card-title justify-center text-white"> Bio: {{user.bio}}</h2>
+
+    <div class="card-actions justify-center">
+        <a class="btn btn-sm btn-wide btn-outline text-white" href="//{{user.website}}" target='_blank'>{{user.website}} Website </a>
+        <a class="btn btn-sm btn-wide btn-outline text-white" href="//{{user.linkedin}}" target='_blank'>{{user.linkedin}} Linkedin </a>
+        <a class="btn btn-sm btn-wide btn-outline text-white" href="//{{user.instagram}}" target='_blank'>{{user.instagram}} Instagram </a>
+    </div>
 
 {{#ifEquals user.username currentUser.username}}
-<h1>Hello {{currentUser.username}}</h1>
-<button><a href="/profile/{{currentUser.username}}/edit-profile">Edit Profile</a></button>
-<button><a href="/{{currentUser.username}}/projects/new">Add Project</a></button>
+<div class="card-actions justify-center">
+<button class="btn btn-sm btn-wide btn-outline text-white" ><a href="/profile/{{currentUser.username}}/edit-profile">Edit Profile</a></button>
+<button class="btn btn-sm btn-wide btn-outline text-white" ><a href="/{{currentUser.username}}/projects/new">Add Project</a></button>
+</div>
 {{/ifEquals}}
 
-
-<button><a href="/{{user.username}}/projects">Projects</a></button>
-<button><a href="/search">Back</a></button>
+</div>
+</div>

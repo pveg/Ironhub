@@ -1,34 +1,78 @@
-<h1>{{user.username}}'s Projects</h1>
+
+
+
+<iframe class="z-0 h-full w-full" src='https://my.spline.design/bandingcopy-911fb32df568877dfd6accf77c314a29/' frameborder='0'>
+</iframe>
+<div>
+<div class="card w-96 mt-4 glass z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+{{!--   <figure><img class="w-20 mt-4 " src="/images/ironhub_nobg.png" alt="Ironhub"></figure> --}}
+
+  <div class="card-body">
+    <p class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{user.username}}'s Projects</p>
 
 {{#each user}}
+
     {{#each projects}}
-    <img src="{{this.image}}">
-    <h1>{{this.title}}</h1>
-    <p>{{this.description}}</p>
-    <p>{{this.link}}</p>
-    <a href="//{{this.link}}" target='_blank'>Link for the project</a>
+<div class="avatar justify-center">
+  <div class="w-32 rounded mt-2">
+    <img class="w-20 mt-4 " src="{{this.image}}">
+  </div>
+</div>
+    <h1 class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{this.title}}</h1>
+    <p class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{this.description}}</p>
+    <p class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{this.link}}</p>
+    
+      <div class="card-actions justify-center">
+    <a href="//{{this.link}}" target='_blank'>  <button class="btn btn-wide btn-sm btn-outline text-white text-center mb-2"> Link for the project </button></a>
+  </div>
+    <div class="card-actions justify-center">
     {{#ifEquals ../../user.username ../../currentUser.username}}
-     <a href="/projects/{{this._id}}/edit-project">Edit Project</a>
+     <a href="/projects/{{this._id}}/edit-project"> <button class="btn btn-wide btn-sm btn-outline text-white text-center mb-2"> Edit Project </button></a>
      {{/ifEquals}}
+    </div>
+
     <form action="/{{this._id}}/comments/{{../../user.username}}" method="post">
-    <label for="comments">
-    <input type="text" name="comments">
+    <label class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white" for="comments">
+    <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="text" name="comments">
         
     </label>
-    <button type="submit"> Send comment </button>
+  <div class="card-actions justify-center">
+    <button class="btn btn-wide btn-sm btn-outline text-white text-center mb-2" type="submit"> Send comment </button>
     </form>
+  </div>
     <div>
-        <h3>Comments</h3>
+        <h3 class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">Comments</h3>
         {{#each this.comments}}
-        <h1>{{this.author}}</h1>
-            <p>{{this.comment}}</p>
+        <img src="{{this.author.profilepicture}}" alt="">
+        <h1 class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{this.author.username}}</h1>
+            <p class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{this.comment}}</p>
         {{/each}}
     </div>
     {{/each}}
 {{/each}}
 
-{{#ifEquals user.username currentUser.username}}
-    <a href="/{{user.username}}/projects/new">New Project</a>
-{{/ifEquals}}
-    
-    <a href="/profile/{{user.username}}">Back to Profile</a>
+  <div class="card-actions justify-center">
+{{!-- {{#ifEquals user.username currentUser.username}} --}}
+    <a href="/profile/{{user.username}}"> <button class="btn btn-sm btn-wide text-white btn-outline mt-6">Back to Profile</button></a>
+{{!-- {{/ifEquals}} --}}
+    </div>
+{{!-- 
+  <div class="card-actions justify-center">
+<a href="/profile/{{user.username}}"> <button class="btn btn-sm btn-wide text-white btn-outline mt-6"> Back to Profile</a></button>
+  </div>
+</div> --}}
+
+{{#if errorMessage}}
+<div id="alert-additional-content-2" class="p-2 mb-5 border border-red-200 rounded-lg bg-red-50 dark:bg-red-200" role="alert">
+  <div class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">
+    {{errorMessage}}
+    <p class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">Please, reload the page</p>
+  </div>
+
+</div>
+</div>
+{{/if}}
+
+
+</div>
+</div>

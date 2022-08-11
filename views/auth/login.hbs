@@ -1,4 +1,4 @@
-<form action="/auth/login" method="POST">
+{{!-- <form action="/auth/login" method="POST">
    <label for="Username">
       <input type="text" name="username" placeholder="Username">
    </label>
@@ -7,22 +7,66 @@
    </label>
 
    <button type="submit">Submit</button>
-</form>
-
+</form> --}}
+{{!-- 
 
 <img src="/images/ironhub_nobg.png" width="500px" alt="X">
 
 <h4>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis accusantium quas facilis autem fuga? Doloremque eaque ex natus. 
    Beatae temporibus libero mollitia recusandae eligendi tenetur sit dolorem architecto iusto qui.</h4>
+ --}}
+{{!--  {{#if currentUser}}
+<div class=" z-10 navbar bg-base-100">
+  <div class="flex-1">
+    <a class="btn btn-ghost normal-case text-xl" href="/">Ironhub</a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal p-0">
+      <li><a href="/profile/{{currentUser.username}}">Profile</a></li>
+        <li><a href="/{{currentUser.username}}/projects">Projects</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+    </ul>
+  </div>
+</div>
+<div>
+   {{/if}} --}}
 
-<p>Don't have an account yet?</p>
-<button><a href="/auth/signup">Sign Up</a></button>
+<div>
+    
+<iframe class="z-0 h-full w-full" src='https://my.spline.design/bandingcopy-911fb32df568877dfd6accf77c314a29/' frameborder='0'>
+</iframe>
+   <div class="card w-96 glass z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mb-20">
+      <figure><img class="object-contain mt-2" src="/images/ironhub_nobg.png" alt="Ironhub"></figure>
 
+  <div class="card-body -mt-8 justify-center">
 
-<p>Created by:</p>
-<p>xxx xxxx</p>
+    <form action="/auth/login" method="POST">
+    <label for="Username"></label>
+ <input class="input input-bordered w-full max-w-xs mt-1 text-center opacity-95 justify-center" type="text" name="username" placeholder="Username">
 
+ <label for="Password">
+      <input class="input input-bordered w-full max-w-xs mt-1 text-center opacity-95 justify-center" type="password" name="password" placeholder="Password">
+   </label>
+</div>
+
+<div class="card-actions justify-center">
+   <button class="btn btn-wide btn-sm btn-outline text-white text-center -mt-7 mb-2"type="submit">Login</button>
+</form>
+</div>
+
+<div class="card-actions justify-center">
+    <a href="/auth/signup"><button class="btn btn-sm btn-wide btn-outline text-white text-center mt-2 mb-4"type="submit"> Create new account</button></a>
+</div>
 
 {{#if errorMessage}}
-   {{errorMessage}}
+<div id="alert-additional-content-2" class="p-2 mb-5 border border-red-200 rounded-lg bg-red-50 dark:bg-red-200" role="alert">
+  <div class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">
+    {{errorMessage}}
+    <p class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">Refresh the page</p>
+  </div>
+</div>
 {{/if}}
+
+  </div>
+</div>
+</div>

@@ -5,38 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{appTitle}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.22.0/dist/full.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
-    {{#if currentUser}}
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <a href="/search"><img
-                  src="/images/ironhub_nobg.png"
-                  alt="Ironhub logo"
-                  width="45px"
-                  title="Back to Search"
-                /></a>
-            </li>
-            <li>
-              <a href="/search">Search</a>
-            </li>
-            <li>
-              <a href="/profile/{{currentUser.username}}">Profile</a>
-            </li>
-            <li>
-              <a href="/auth/logout">Logout</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    {{/if}}
+
   <body>
 
+   {{#if currentUser}}
+<div class=" z-10 navbar bg-base-100">
+  <div class="flex-1">
+    <a class="btn btn-ghost normal-case text-xl" href="/">Ironhub</a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal p-0">
+      <li><a href="/profile/{{currentUser.username}}">Profile</a></li>
+        <li><a href="/{{currentUser.username}}/projects">Projects</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+    </ul>
+  </div>
+</div>
+<div>
+   {{/if}}
 
     {{{body}}}
+
+
+<footer class="footer footer-center p-4 bg-base-100 text-base-content">
+  <div>
+    <p>Developed and Designed by <a href="https://github.com/lzaquine">Lucas Z.</a> and <a href="https://github.com/pveg">Paulo T.</a></p>
+  </div>
+</footer>
 
     <script src="/js/script.js"></script>
   </body>
