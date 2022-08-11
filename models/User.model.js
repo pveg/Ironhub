@@ -17,12 +17,12 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: true,
-      trim: true,
+      trim: true
     },
     surname: {
       type: String,
       required: true,
-      trim: true,
+      trim: true
     },
     username: {
       type: String,
@@ -30,14 +30,15 @@ const userSchema = new Schema(
       unique: true,
       lowercase: true,
       trim: true,
+      maxlength: 20
     },
     password: {
       type: String,
-      required: true,
+      required: true
     },
     ironpass: {
       type: String,
-      /* required: true, */
+      required: true
     },
     course: {
       type: String,
@@ -46,11 +47,11 @@ const userSchema = new Schema(
     },
     campus: {
       type: String,
-      required: true,
+      required: true
     },
     profilepicture: {
       type: String,
-      default: "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
+      default: "https://res.cloudinary.com/dkdf4rhxp/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1660229420/ironhub-project/yiisznvaxj6tzw9d0zmg.jpg"
     },
     location: {
       type: String
@@ -73,8 +74,8 @@ const userSchema = new Schema(
     bio: {
       type: String
     },
-    /* favorites: [{type: [Schema.Types.ObjectId],ref: "Project"}], */
     projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
+    comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
