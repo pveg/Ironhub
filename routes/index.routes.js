@@ -37,6 +37,23 @@ router.get('/profile/:username/delete-profile', isLoggedIn, (req, res, next) => 
   }
 });
 
+/* DELETE PROJECT */
+
+
+router.get('/projects/:projectid/delete-project', isLoggedIn, (req, res, next)=> {
+  const {projectid, username} = req.params;
+  const id = req.session.user._id;
+  const currentUser = req.session.user
+  
+  Project.findByIdAndDelete(projectid)
+  .then(() =>{
+  User.findByIdAndUpdate(id, {$pull: {projects: projectid}} )
+  })
+  .then(()=> {
+     res.redirect(`/profile/${currentUser.username}`)})
+     .catch(err => next(err))
+  });
+
 
 /* GET Home Page/Sign Up */
 
@@ -160,10 +177,11 @@ router.get("/:username/projects", isLoggedIn, (req, res, next) => {
 
 router.get('/:username/projects/new', isLoggedIn, (req, res, next) => {
   const {username} = req.params;
+  const currentUser = req.session.user
   User.findOne({username: username})
   .populate('projects') 
   .then(user => {
-    res.render('projects/new-project', {user})})
+    res.render('projects/new-project', {user, currentUser})})
   .catch(err => next(err));
 })
 
@@ -201,7 +219,7 @@ router.get("/projects/:projectid/edit-project", isLoggedIn, (req, res, next) => 
   const currentUser = req.session.user
   Project.findById(projectid)
   .then((project) => {
-    res.render('projects/edit-project', {currentUser, project} )
+    res.render('projects/edit-project', {currentUser, project, projectid} )
   })
   .catch((err) => next(err))
   })
@@ -225,24 +243,6 @@ router.post("/projects/:projectid/edit-project", fileUploader.single('profilepic
       .catch(err => next(err))
     }
 }});
-
-
-/* DELETE PROJECT */
-
-
-router.get('/projects/:projectid/delete-project', isLoggedIn, (req, res, next)=> {
-const {projectid, username} = req.params;
-const id = req.session.user._id;
-const currentUser = req.session.user
-
-Project.findByIdAndDelete(projectid)
-.then(() =>{
-User.findByIdAndUpdate(id, {$pull: {projects: projectid}} )
-})
-.then(()=> {
-   res.redirect(`/profile/${currentUser.username}`)})
-   .catch(err => next(err))
-});
 
 
 /* COMMENTS */
