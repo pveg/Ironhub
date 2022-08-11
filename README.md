@@ -205,19 +205,12 @@ TailwindCSS
 
 [Repository](https://github.com/lzaquine/Ironhub)
 
-[Deploy](https://project2ironhack.herokuapp.com)
+[Deploy](https://ironhubapp.herokuapp.com)
 
 
 
 <br>
 
-
-
-## Slides:
-
-[Slides Link](https://docs.google.com/presentation/d/1P5FIi0vHZBUcgUtmt1M4_lLCO5dwdJ4UOgtJa4ehGfk/edit?usp=sharing)
-
-<br>
 
 ### Contributors:
 ⚒️ Lucas Zaquine - [`Github`](https://github.com/lzaquine) - [`Linkedin`](https://www.linkedin.com/in/lucaszaquine)
