@@ -75,13 +75,13 @@
 
 <iframe class="z-0 h-full w-full" src='https://my.spline.design/bandingcopy-911fb32df568877dfd6accf77c314a29/' frameborder='0'>
 </iframe>
-<div class="card w-96 mt-16 glass z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-{{!--   <figure><img class="w-20 mt-4" src="/images/ironhub_nobg.png" alt="Ironhub"></figure> --}}
+<div class="card w-100 mt-16 glass z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
 
   <div class="card-body">
 
 
 <form action="/profile/{{user.username}}/edit-profile" method="POST" class='form-control-file' enctype="multipart/form-data">
+
 {{!-- <div class="overflow-hidden relative w-64 mt-4 mb-4 bg-grey-50 self-center" style="margin-left: 130px;">
                 <button class="bg-indigo hover:bg-indigo-dark text-white font-bold py-2 px-4 w-full inline-flex items-center">
                     <svg fill="#FFF" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
@@ -91,18 +91,19 @@
                 </button>
                 <input class="cursor-pointer absolute block opacity-0 pin-r pin-t" type="file" name="vacancyImageFiles" @change="fileName" multiple>
             </div> --}}
-<label class="block mb-4 mt-4 text-sm font-medium  dark:text-gray-300 text-center text-white"for='profilepicture'>Profile Picture
+            
+<label class="block text-sm font-medium dark:text-gray-300 text-center text-white"for='profilepicture'>Profile Picture:
 <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type='file' name='profilepicture' id='profilepicture' class='form-control-file'  />
     <input type='text' name='previousUrl' value='{{user.profilepicture}}' hidden/>
 </label>
-   <div class="card-actions justify-center">
-     <label class="card-title justify-center text-white"for="name">
-      <input class="input input-bordered w-full max-w-xs mt-1 text-center opacity-95" type="text" name="name" value="{{user.name}}">
-   </label>
-   
 
-   <label class="card-title justify-center text-white"for="Surname">
-      <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" name="surname" value="{{user.surname}}">
+   <div class="card-actions justify-center">
+     <label class="card-title block text-sm mt-1 font-medium dark:text-gray-300 text-center text-white" for="name">Name:
+      <input class="input input-bordered w-full max-w-xs text-center rounded-full opacity-95" type="text" name="name" value="{{user.name}}">
+   </label>
+
+   <label class="card-title block text-sm mt-1 font-medium dark:text-gray-300 text-center text-white" for="Surname">Surname:
+      <input class="input input-bordered w-full max-w-xs rounded-full text-center opacity-95" type="text" name="surname" value="{{user.surname}}">
    </label>
 
  {{!--   <label class="card-title justify-center text-white" for="Password">
@@ -134,34 +135,34 @@
    </select>
    </label> --}}
 
-   <label for="location">Location
-<input type="text" name="location" value="{{user.location}}">
+   <label class="card-title block text-sm mt-1 font-medium dark:text-gray-300 text-center text-white" for="location">Location:
+<input class="input input-bordered w-full max-w-xs text-center rounded-full opacity-95" type="text" name="location" value="{{user.location}}">
 </label>
 
-<label for="email">Email
-<input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="email" name="email" value="{{user.email}}">
+<label class="card-title block text-sm mt-1 font-medium dark:text-gray-300 text-center text-white" for="email">Email:
+<input class="input input-bordered w-full max-w-xs text-center rounded-full opacity-95" type="text" name="email" value="{{user.email}}">
 </label>
 
-<label for="website">Website
-<input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="text" name="website" value="{{user.website}}">
+<label class="card-title block text-sm mt-1 font-medium dark:text-gray-300 text-center text-white" for="website">Website:
+<input class="input input-bordered w-full max-w-xs text-center rounded-full opacity-95" type="text" name="website" value="{{user.website}}">
 </label>
 
-<label for="linkedin">Linkedin
-<input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="text" name="linkedin" value="{{user.linkedin}}">
+<label class="card-title block text-sm mt-1 font-medium dark:text-gray-300 text-center text-white" for="linkedin">Linkedin:
+<input class="input input-bordered w-full max-w-xs rounded-full text-center opacity-95" type="text" name="linkedin" value="{{user.linkedin}}">
 </label>
 
-<label for="instagram">Instagram
-<input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="text" name="instagram" value="{{user.instagram}}">
+<label class="card-title block text-sm mt-1 font-medium dark:text-gray-300 text-center text-white" for="instagram">Instagram:
+<input class="input input-bordered w-full max-w-xs rounded-full text-center opacity-95" type="text" name="instagram" value="{{user.instagram}}">
 </label>
 
-<label for="bio">Bio
-<textarea class="textarea mt-10" name="bio" id="bio">{{user.bio}}</textarea>
+<label class="card-title block text-sm mt-1 font-medium dark:text-gray-300 text-center text-white" for="bio">Bio:
+<textarea class="textarea w-full max-w-xs rounded-full text-center opacity-95" name="bio" id="bio">{{user.bio}}</textarea>
 </label>
 
    </div>
    <div class="card-actions justify-center">
-   <button class="btn btn-sm btn-wide text-white btn-outline mt-6"><a href="/profile/{{user.username}}/delete-profile">Delete Profile</a></button>
-<button type="submit">Edit Profile</button>
+   <button class="btn btn-sm btn-wide text-white rounded-full btn-outline mt-6"><a href="/profile/{{user.username}}/delete-profile">Delete Profile</a></button>
+<button class="btn btn-sm btn-wide text-white rounded-full btn-outline mt-6 ml-3" type="submit">Edit Profile</button>
 </form>
    </div>
 
@@ -169,10 +170,15 @@
 <div id="alert-additional-content-2" class="p-2 mb-5 border border-red-200 rounded-lg bg-red-50 dark:bg-red-200" role="alert">
   <div class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">
     {{errorMessage}}
-    <p class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">Please, reload the page</p>
   </div>
 </div>
 {{/if}}
 
 </div>
 </div>
+
+<footer class="footer footer-center p-1 bg-base-100 text-base-content">
+  <div>
+    <p>Developed and Designed by <br><a href="https://github.com/lzaquine" target="_blank">Lucas Zaquine</a> & <a href="https://github.com/pveg" target="_blank">Paulo Torres</a></p>
+  </div>
+</footer>

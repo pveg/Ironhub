@@ -42,31 +42,35 @@
 
     <form action="/auth/login" method="POST">
     <label for="Username"></label>
- <input class="input input-bordered w-full max-w-xs mt-1 text-center opacity-95 justify-center" type="text" name="username" placeholder="Username">
+ <input class="input input-bordered w-full rounded-full max-w-xs mt-1 text-center opacity-95 justify-center" type="text" name="username" placeholder="Username">
 
  <label for="Password">
-      <input class="input input-bordered w-full max-w-xs mt-1 text-center opacity-95 justify-center" type="password" name="password" placeholder="Password">
+      <input class="input input-bordered w-full rounded-full max-w-xs mt-1 text-center opacity-95 justify-center" type="password" name="password" placeholder="Password">
    </label>
 </div>
 
 <div class="card-actions justify-center">
-   <button class="btn btn-wide btn-sm btn-outline text-white text-center -mt-7 mb-2"type="submit">Login</button>
+   <button class="btn btn-wide btn-sm btn-outline rounded-full text-white text-center -mt-7 mb-2"type="submit">Log In</button>
 </form>
 </div>
 
 <div class="card-actions justify-center">
-    <a href="/auth/signup"><button class="btn btn-sm btn-wide btn-outline text-white text-center mt-2 mb-4"type="submit"> Create new account</button></a>
+    <a href="/auth/signup"><button class="btn btn-sm rounded-full btn-wide btn-outline text-white text-center mt-2 mb-4"type="submit"> Create new account</button></a>
 </div>
 
 {{#if errorMessage}}
 <div id="alert-additional-content-2" class="p-2 mb-5 border border-red-200 rounded-lg bg-red-50 dark:bg-red-200" role="alert">
   <div class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">
     {{errorMessage}}
-    <p class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">Refresh the page</p>
   </div>
 </div>
 {{/if}}
 
   </div>
 </div>
-</div>
+
+<footer class="footer footer-center p-1 bg-base-100 text-base-content">
+  <div>
+    <p>Developed and Designed by <br><a href="https://github.com/lzaquine" target="_blank">Lucas Zaquine</a> & <a href="https://github.com/pveg" target="_blank">Paulo Torres</a></p>
+  </div>
+</footer>

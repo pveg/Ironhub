@@ -20,17 +20,24 @@
         <h2 class="card-title justify-center text-white"> Bio: {{user.bio}}</h2>
 
     <div class="card-actions justify-center">
-        <a class="btn btn-sm btn-wide btn-outline text-white" href="//{{user.website}}" target='_blank'>{{user.website}} Website </a>
-        <a class="btn btn-sm btn-wide btn-outline text-white" href="//{{user.linkedin}}" target='_blank'>{{user.linkedin}} Linkedin </a>
-        <a class="btn btn-sm btn-wide btn-outline text-white" href="//{{user.instagram}}" target='_blank'>{{user.instagram}} Instagram </a>
+        <a class="btn btn-sm btn-wide btn-outline text-white rounded-full" href="//{{user.website}}" target='_blank'>{{user.website}}</a>
+        <a class="btn btn-sm btn-wide btn-outline text-white rounded-full" href="//{{user.linkedin}}" target='_blank'>{{user.linkedin}}</a>
+        <a class="btn btn-sm btn-wide btn-outline text-white rounded-full" href="//{{user.instagram}}" target='_blank'>{{user.instagram}}</a>
+        <a class="btn btn-sm btn-wide btn-outline text-white rounded-full"href="/{{user.username}}/projects">Projects</a>
     </div>
 
 {{#ifEquals user.username currentUser.username}}
 <div class="card-actions justify-center">
-<a href="/profile/{{currentUser.username}}/edit-profile"><button class="btn btn-sm btn-wide btn-outline text-white" >Edit Profile </button></a>
-<a href="/{{currentUser.username}}/projects/new"><button class="btn btn-sm btn-wide btn-outline text-white" >Add Project</button></a>
+<a href="/profile/{{currentUser.username}}/edit-profile"><button class="btn rounded-full btn-sm btn-wide btn-outline text-white" >Edit Profile </button></a>
+<a href="/{{currentUser.username}}/projects/new"><button class="btn rounded-full btn-sm btn-wide btn-outline text-white" >Add Project</button></a>
 </div>
 {{/ifEquals}}
 
 </div>
 </div>
+
+<footer class="footer footer-center p-1 bg-base-100 text-base-content">
+  <div>
+    <p>Developed and Designed by <br><a href="https://github.com/lzaquine" target="_blank">Lucas Zaquine</a> & <a href="https://github.com/pveg" target="_blank">Paulo Torres</a></p>
+  </div>
+</footer>

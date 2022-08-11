@@ -5,7 +5,7 @@
   <div class="card-body">
     <form action="/search/results" method="GET">
     <label for="campus"></label>
-   <select class="select select-bordered w-full max-w-xs text-center mt-4 opacity-95" name="campus" id="campus"> Campus
+   <select class="select select-bordered w-full rounded-full max-w-xs text-center mt-4 opacity-95" name="campus" id="campus"> Campus
       <option value="">Select Campus</option>
       <option value="Amsterdam">Amsterdam</option>
       <option value="Barcelona">Barcelona</option>
@@ -22,7 +22,7 @@
    </label>
 
      <label for="course"></label>
-      <select class="select select-bordered w-full max-w-xs mt-4 text-center opacity-95"name="course" id="course"> Course
+      <select class="select select-bordered rounded-full w-full max-w-xs mt-4 text-center opacity-95"name="course" id="course"> Course
       <option value="">Select Course</option>
       <option value="Web Dev">Web Dev</option>
       <option value="UX/UI">UX/UI</option>
@@ -32,15 +32,20 @@
    </label>
 
       <label for="Username">
-      <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="text" name="name" placeholder="Username">
+      <input class="input input-bordered w-full max-w-xs rounded-full mt-4 text-center opacity-95" type="text" name="name" placeholder="Username">
    </label>
 
 <div class="card-actions justify-center">
-   <button class="btn btn-sm btn-wide text-white btn-outline mt-6" type="submit">Search Results</button>
+   <button class="btn btn-sm btn-wide text-white rounded-full btn-outline mt-6" type="submit">Search Results</button>
   </div>
   </form>
 </div>
 </div>
+<footer class="footer footer-center p-1 bg-base-100 text-base-content">
+  <div>
+    <p>Developed and Designed by <br><a href="https://github.com/lzaquine" target="_blank">Lucas Zaquine</a> & <a href="https://github.com/pveg" target="_blank">Paulo Torres</a></p>
+  </div>
+</footer>
 
 {{!--       <button class="btn btn-primary">
         <a href="/search/results">Search Results</a>

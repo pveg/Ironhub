@@ -7,27 +7,27 @@
 
 <form action="/auth/signup" method="POST">
      <label for="Username">
-      <input class="input input-bordered w-full max-w-xs mt-1 text-center opacity-95" type="text" name="username" placeholder="Username">
+      <input class="input input-bordered rounded-full w-full max-w-xs mt-1 text-center opacity-95" type="text" name="username" placeholder="Username">
    </label>
    
    <label for="Name">
-      <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="text" name="name" placeholder="Name">
+      <input class="input input-bordered rounded-full w-full max-w-xs mt-4 text-center opacity-95" type="text" name="name" placeholder="Name">
    </label>
 
    <label for="Surname">
-      <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="text" name="surname" placeholder="Surname">
+      <input class="input input-bordered rounded-full w-full max-w-xs mt-4 text-center opacity-95" type="text" name="surname" placeholder="Surname">
    </label>
 
    <label for="ironpass">
-      <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="password" name="ironpass" placeholder="IronPass">
+      <input class="input input-bordered rounded-full w-full max-w-xs mt-4 text-center opacity-95" type="password" name="ironpass" placeholder="IronPass">
    </label>
 
    <label for="Password">
-      <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="password" name="password" placeholder="Password">
+      <input class="input input-bordered rounded-full w-full max-w-xs mt-4 text-center opacity-95" type="password" name="password" placeholder="Password">
    </label>
 
     <label for="Campus"></label>
-   <select class="select select-bordered w-full max-w-xs text-center mt-4 opacity-95" name="campus" id="campus"> Campus
+   <select class="select select-bordered rounded-full w-full max-w-xs text-center mt-4 opacity-95" name="campus" id="campus"> Campus
       <option value="">Select Campus</option>
       <option value="Amsterdam">Amsterdam</option>
       <option value="Barcelona">Barcelona</option>
@@ -45,7 +45,7 @@
 
      <label for="course"></label>
 
-      <select class="select select-bordered w-full max-w-xs mt-4 text-center opacity-95"name="course" id="course"> Course
+      <select class="select select-bordered rounded-full w-full max-w-xs mt-4 text-center opacity-95"name="course" id="course"> Course
        <option value="">Select Course</option>
       <option value="Web Dev">Web Dev</option>
       <option value="UX/UI">UX/UI</option>
@@ -55,7 +55,8 @@
    </label>
 
    <div class="card-actions justify-center">
-   <button class="btn btn-sm btn-wide text-white btn-outline mt-6" type="submit">Sign up</button>
+   <button class="btn btn-sm btn-wide rounded-full text-white btn-outline mt-6" type="submit">Sign up</button>
+   <a href="/auth/login" class="btn rounded-full btn-sm btn-wide text-white btn-outline ">Log In</a>
 </form>
    </div>
 
@@ -63,10 +64,15 @@
 <div id="alert-additional-content-2" class="p-2 mb-5 border border-red-200 rounded-lg bg-red-50 dark:bg-red-200" role="alert">
   <div class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">
     {{errorMessage}}
-    <p class="mt-2 mb-4 text-sm text-red-900 dark:text-red-800 text-center">Please, reload the page</p>
   </div>
 </div>
 {{/if}}
 
 </div>
 </div>
+
+<footer class="footer footer-center p-1 bg-base-100 text-base-content">
+  <div>
+    <p>Developed and Designed by <br><a href="https://github.com/lzaquine" target="_blank">Lucas Zaquine</a> & <a href="https://github.com/pveg" target="_blank">Paulo Torres</a></p>
+  </div>
+</footer>
