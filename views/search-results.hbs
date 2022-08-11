@@ -1,9 +1,59 @@
-
 <iframe class="z-0 h-full w-full" src='https://my.spline.design/bandingcopy-911fb32df568877dfd6accf77c314a29/' frameborder='0'>
 </iframe>
 
-{{!-- <h1 class="card-title text-white">Search Results</h1> --}}
+
 {{#each results}}
+
+<div class="row -mt-72">
+  <div class="column -mt-72">
+    <div class="card glass mb-72 mt-2 z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <div class="avatar justify-center">
+  <div class="w-24 rounded-full">
+      <img src="{{this.profilepicture}}" alt="{{this.username}}">
+        </div>
+</div>
+<h1>{{this.username}}</h1>
+<p>{{this.course}}</p>
+<p>{{this.campus}}</p>
+<button>
+  <a href="/profile/{{this.username}}">Go to Profile</a></button></div>
+  </div>
+</div>
+
+{{/each}}
+
+<footer class="footer footer-center p-1 bg-base-100 text-base-content">
+  <div>
+    <p>Developed and Designed by <br><a href="https://github.com/lzaquine" target="_blank">Lucas Zaquine</a> & <a href="https://github.com/pveg" target="_blank">Paulo Torres</a></p>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- <iframe class="z-0 h-full w-full" src='https://my.spline.design/bandingcopy-911fb32df568877dfd6accf77c314a29/' frameborder='0'>
+</iframe> --}}
+
+{{!-- <h1 class="card-title text-white">Search Results</h1> --}}
+{{!-- {{#each results}}
 <div class="card w-96 glass z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
   <div class="card-body">
     <div class="card-actions justify-center">
@@ -28,7 +78,7 @@
   <div>
     <p>Developed and Designed by <br><a href="https://github.com/lzaquine" target="_blank">Lucas Zaquine</a> & <a href="https://github.com/pveg" target="_blank">Paulo Torres</a></p>
   </div>
-</footer>
+</footer> --}}
 
 {{!-- <h1>Search Results</h1>
 
