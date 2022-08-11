@@ -8,44 +8,48 @@
 {{!--   <figure><img class="w-20 mt-4 " src="/images/ironhub_nobg.png" alt="Ironhub"></figure> --}}
 
   <div class="card-body">
-    <p class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{user.username}}'s Projects</p>
+    <p class="block text-md font-medium dark:text-gray-300 text-center font-bold text-white">{{user.username}}'s Projects</p>
 
 {{#each user}}
 
     {{#each projects}}
 <div class="avatar justify-center">
-  <div class="w-32 rounded mt-2">
-    <img class="w-20 mt-4 " src="{{this.image}}">
-  </div>
+{{!--   <div class="w-32 mt-2"> --}}
+    <img class="w-24 rounded-full" src="{{this.image}}">
+  {{!-- </div> --}}
 </div>
-    <h1 class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{this.title}}</h1>
-    <p class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{this.description}}</p>
-    <p class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{this.link}}</p>
+    <h1 class="block text-md font-medium dark:text-gray-300 text-center text-white">{{this.title}}</h1>
+    <p class="block text-md font-medium dark:text-gray-300 text-center text-white">{{this.description}}</p>
+    <p class="block text-md font-medium dark:text-gray-300 text-center text-white">{{this.link}}</p>
     
       <div class="card-actions justify-center">
-    <a href="//{{this.link}}" target='_blank'>  <button class="btn btn-wide btn-sm btn-outline text-white text-center mb-2"> Link for the project </button></a>
+    <a href="//{{this.link}}" target='_blank'>  <button class="btn btn-wide btn-sm rounded-full btn-outline text-white text-center mb-2"> Link for the project </button></a>
   </div>
     <div class="card-actions justify-center">
     {{#ifEquals ../../user.username ../../currentUser.username}}
-     <a href="/projects/{{this._id}}/edit-project"> <button class="btn btn-wide btn-sm btn-outline text-white text-center mb-2"> Edit Project </button></a>
+     <a href="/projects/{{this._id}}/edit-project"> <button class="btn btn-wide rounded-full btn-sm btn-outline text-white text-center mb-2"> Edit Project </button></a>
      {{/ifEquals}}
     </div>
 
     <form action="/{{this._id}}/comments/{{../../user.username}}" method="post">
-    <label class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white" for="comments">
-    <input class="input input-bordered w-full max-w-xs mt-4 text-center opacity-95" type="text" name="comments">
+    <label class="block text-md font-medium dark:text-gray-300 text-center text-white" for="comments">
+    <input class="input input-bordered w-full max-w-xs rounded-full text-center opacity-95 mb-2" type="text" name="comments">
         
     </label>
   <div class="card-actions justify-center">
-    <button class="btn btn-wide btn-sm btn-outline text-white text-center mb-2" type="submit"> Send comment </button>
+    <button class="btn btn-wide btn-sm btn-outline text-white rounded-full text-center mt-2" type="submit"> Send comment </button>
     </form>
   </div>
     <div>
-        <h3 class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">Comments</h3>
+        <h3 class="block text-md font-medium dark:text-gray-300 text-center text-white">Comments:</h3>
         {{#each this.comments}}
+<div class="avatar justify-center">
+  <div class="w-24 rounded-full mb-1">
         <img src="{{this.author.profilepicture}}" alt="">
-        <h1 class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{this.author.username}}</h1>
-            <p class="block mb-2 text-md font-medium  dark:text-gray-300 text-center text-white">{{this.comment}}</p>
+        </div>
+        </div>
+        <h1 class="block text-md font-medium dark:text-gray-300 text-center text-white">{{this.author.username}}:</h1>
+            <p class="block text-md font-medium dark:text-gray-300 text-center text-white">{{this.comment}}</p>
         {{/each}}
     </div>
     {{/each}}
@@ -53,7 +57,7 @@
 
   <div class="card-actions justify-center">
 {{!-- {{#ifEquals user.username currentUser.username}} --}}
-    <a href="/profile/{{user.username}}"> <button class="btn btn-sm btn-wide text-white btn-outline mt-6">Back to Profile</button></a>
+    <a href="/profile/{{user.username}}"> <button class="btn btn-sm btn-wide rounded-full text-white btn-outline mt-2">Back to Profile</button></a>
 {{!-- {{/ifEquals}} --}}
     </div>
 {{!-- 
