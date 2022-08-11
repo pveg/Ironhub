@@ -76,6 +76,7 @@ router.get("/search/results", isLoggedIn, (req, res, next) => {
   })
   .populate('projects')
   .then((results) => {
+    console.log(results)
     res.render('search-results', {results, currentUser})
   })
 .catch(err => next(err))
@@ -149,7 +150,7 @@ router.get("/:username/projects", isLoggedIn, (req, res, next) => {
     }
   }})
   .then(user => {
-    res.render('project', {user, currentUser})})
+    res.render('projects/project', {user, currentUser})})
   .catch(err => next(err));
 })
 
@@ -198,7 +199,11 @@ router.post('/:username/projects/new', fileUploader.single('image') , isLoggedIn
 router.get("/projects/:projectid/edit-project", isLoggedIn, (req, res, next) => {
   const {projectid} = req.params;
   const currentUser = req.session.user
-    res.render('projects/edit-project', {currentUser, projectid} )
+  Project.findById(projectid)
+  .then((project) => {
+    res.render('projects/edit-project', {currentUser, project} )
+  })
+  .catch((err) => next(err))
   })
 
 
@@ -232,11 +237,11 @@ const currentUser = req.session.user
 
 Project.findByIdAndDelete(projectid)
 .then(() =>{
-return User.findByIdAndUpdate(id, {$pull: {projects: projectid}} )
+User.findByIdAndUpdate(id, {$pull: {projects: projectid}} )
 })
- .then(()=> {
+.then(()=> {
    res.redirect(`/profile/${currentUser.username}`)})
-.catch(err => next(err))
+   .catch(err => next(err))
 });
 
 

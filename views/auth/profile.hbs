@@ -11,7 +11,7 @@
 </div>
 
   <div class="card-body">
-{{!--     <h2 class="card-title justify-center"> {{currentUser.username}}</h2> --}}
+    <h2 class="card-title justify-center"> {{currentUser.username}}</h2>
     <h2 class="card-title justify-center text-white"> {{user.name}} {{user.surname}}</h2>
     <h2 class="card-title justify-center text-white"> Campus: {{user.campus}}</h2>
     <h2 class="card-title justify-center text-white"> Course: {{user.course}}</h2>
@@ -27,8 +27,8 @@
 
 {{#ifEquals user.username currentUser.username}}
 <div class="card-actions justify-center">
-<button class="btn btn-sm btn-wide btn-outline text-white" ><a href="/profile/{{currentUser.username}}/edit-profile">Edit Profile</a></button>
-<button class="btn btn-sm btn-wide btn-outline text-white" ><a href="/{{currentUser.username}}/projects/new">Add Project</a></button>
+<a href="/profile/{{currentUser.username}}/edit-profile"><button class="btn btn-sm btn-wide btn-outline text-white" >Edit Profile </button></a>
+<a href="/{{currentUser.username}}/projects/new"><button class="btn btn-sm btn-wide btn-outline text-white" >Add Project</button></a>
 </div>
 {{/ifEquals}}
 
