@@ -2,22 +2,23 @@
 <iframe class="z-0 h-full w-full" src='https://my.spline.design/bandingcopy-911fb32df568877dfd6accf77c314a29/' frameborder='0'>
 </iframe>
 
-<div class="card w-96 glass z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+<div class="card w-100 glass z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
 
 <div class="avatar justify-center">
-  <div class="w-24 rounded-full mt-2">
+  <div class="w-24 rounded-full mt-3">
     <img src="{{user.profilepicture}}" />
   </div>
 </div>
 
   <div class="card-body">
-    <h2 class="card-title justify-center"> {{currentUser.username}}</h2>
+    <h2 class="card-title justify-center mb-5 text-white"> {{currentUser.username}}</h2>
     <h2 class="card-title justify-center text-white"> {{user.name}} {{user.surname}}</h2>
     <h2 class="card-title justify-center text-white"> Campus: {{user.campus}}</h2>
     <h2 class="card-title justify-center text-white"> Course: {{user.course}}</h2>
     <h2 class="card-title justify-center text-white"> Location: {{user.location}}</h2>
     <h2 class="card-title justify-center text-white"> Email: {{user.email}}</h2>
-        <h2 class="card-title justify-center text-white"> Bio: {{user.bio}}</h2>
+        <h2 class="card-title justify-center text-white"> Bio:</h2>
+        <h2 class="card-title justify-center text-white">{{user.bio}}</h2>
 
     <div class="card-actions justify-center">
         <a class="btn btn-sm btn-wide btn-outline text-white rounded-full" href="//{{user.website}}" target='_blank'>{{user.website}}</a>
@@ -29,7 +30,7 @@
 {{#ifEquals user.username currentUser.username}}
 <div class="card-actions justify-center">
 <a href="/profile/{{currentUser.username}}/edit-profile"><button class="btn rounded-full btn-sm btn-wide btn-outline text-white" >Edit Profile </button></a>
-<a href="/{{currentUser.username}}/projects/new"><button class="btn rounded-full btn-sm btn-wide btn-outline text-white" >Add Project</button></a>
+<a href="/{{currentUser.username}}/projects/new"><button class="btn rounded-full btn-sm btn-wide btn-outline text-white" >Add New Project</button></a>
 </div>
 {{/ifEquals}}
 
