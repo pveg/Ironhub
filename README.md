@@ -194,7 +194,7 @@ TailwindCSS
 <br><h1 align="center" dir="auto"><strong>Ironhub</strong></h1>
 
 
-<a href="https://project2ironhack.herokuapp.com" target="_blank">
+<a href="https://ironhubapp.herokuapp.com" target="_blank">
 <img src="public/images/IronHub_Main_page.png" alt="IronHub"/></a>
 
 <br><br>
