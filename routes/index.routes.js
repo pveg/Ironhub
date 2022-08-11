@@ -148,8 +148,8 @@ router.get("/:username/projects", isLoggedIn, (req, res, next) => {
         model: 'User'
     }
   }})
-  .then(user => { console.log(user.projects[0].comments)
-    res.render('projects/project', {user, currentUser})})
+  .then(user => {
+    res.render('project', {user, currentUser})})
   .catch(err => next(err));
 })
 
