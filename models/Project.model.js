@@ -18,20 +18,17 @@ const projectSchema = new Schema(
     },
     title: {
       type: String,
-/*       required: true, */
+      required: true
     },
     description: {
       type: String,
-/*       required: true, */
+      required: true
     },
     link: {
       type: String,
       set: removeHttp
     },
-    comments: [{
-    type: Schema.Types.ObjectId,
-    ref: "Comment"
-    }],
+    comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   },
   {
     timestamps: true,
