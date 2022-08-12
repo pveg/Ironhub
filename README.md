@@ -1,7 +1,7 @@
 <p align="center" dir="auto">
 <a rel="noopener noreferrer" href="https://ironhubapp.herokuapp.com" target="_blank">
 <img src="public/images/ironhub_nobg.png" width="150px"></a></p>
-<h2 align="center" dir="auto">A plataform by Ironhackers to Ironhackers to showcase projects done during the bootcamp all around the world!<br>💻 🚀 🌎 ✨</h2>
+<h2 align="center" dir="auto">A platform by Ironhackers to Ironhackers to showcase projects done during the bootcamp all around the world!<br>💻 🚀 🌎 ✨</h2>
 
 <br>
 <br>
