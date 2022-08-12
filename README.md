@@ -6,7 +6,7 @@
 
 ## Description:
 
-A plataform by Ironhackers to Ironhackers to showcase projects done during the bootcamp all around the world! 💻 🚀 🌎 ✨
+A plataform by Ironhackers to Ironhackers to showcase projects done during the bootcamp all around the world! <p align="center" dir="auto">💻 🚀 🌎 ✨</p>
 
 <br>
 
@@ -75,7 +75,7 @@ A plataform by Ironhackers to Ironhackers to showcase projects done during the b
     type: String,
     required: true,
     trim: true
-}
+},
   surname: {
     type: String,
     required: true,
@@ -132,7 +132,7 @@ A plataform by Ironhackers to Ironhackers to showcase projects done during the b
     type: String
 },
   projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
-  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
 }
 
 ```
@@ -159,8 +159,8 @@ A plataform by Ironhackers to Ironhackers to showcase projects done during the b
     type: String,
     set: removeHttp
 },
-  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
-},
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
+}
 
 
 ```
@@ -173,8 +173,8 @@ A plataform by Ironhackers to Ironhackers to showcase projects done during the b
 {
   project: { type: Schema.Types.ObjectId, ref: "Project" },
   author: { type: Schema.Types.ObjectId, ref: 'User' },
-  comment: { type: String, required: true },
-},
+  comment: { type: String, required: true }
+}
 
 
 ```
@@ -182,14 +182,6 @@ A plataform by Ironhackers to Ironhackers to showcase projects done during the b
 
 <br>
 
-
-## Packages:
-```
-ExpressJS
-NodeJS
-MongoDB
-TailwindCSS
-```
 
 
 <br>
@@ -205,6 +197,17 @@ TailwindCSS
 
 <br><br>
 
+## Packages:
+
+<a href="https://expressjs.com" target="_blank">ExpressJS</a>
+<br>
+<a href="https://nodejs.org/" target="_blank">NodeJS</a>
+<br>
+<a href="https://www.mongodb.com" target="_blank">MongoDB</a>
+<br>
+<a href="https://tailwindcss.com" target="_blank">TailwindCSS</a>
+<br>
+<br>
 
 
 ## Links:
@@ -216,6 +219,7 @@ TailwindCSS
 
 
 <br>
+
 
 
 ## Contributors:
