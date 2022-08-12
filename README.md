@@ -75,41 +75,41 @@ A plataform by Ironhackers to Ironhackers to showcase projects done during the b
     type: String,
     required: true,
     trim: true
-  }
+}
   surname: {
     type: String,
     required: true,
     trim: true
-  },
+},
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
     lowercase: true,
     trim: true,
     maxlength: 20
-  }
+},
   password: {
     type: String,
     required: true
-  },
+},
   ironpass: {
     type: String,
     required: true,
-  },
+},
   course: {
     type: String,
     required: true,
     enum: ['Web Dev', 'UX/UI', 'Data Analyst', 'Cybersecurity']
-  },
+},
   campus: {
     type: String,
     required: true
-  },
+},
   profilepicture:{
     type: String,
     default: 'url'
- },
+},
  location: {
     type: String
 },
