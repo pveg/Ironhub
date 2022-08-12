@@ -9,16 +9,16 @@
 <form action="/{{user.username}}/projects/new" method="POST" enctype='multipart/form-data'>
 
       <label class="block text-sm font-medium dark:text-gray-300 text-center text-white" for="image">Project Image:
-<input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" name="image">
+<input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" name="image" required>
 </label> 
      <label class="card-title block text-sm mt-3 font-medium dark:text-gray-300 text-center text-white" for="title">Title:
-      <input class="input input-bordered w-full max-w-xs text-center rounded-full opacity-95" type="text" name="title">
+      <input class="input input-bordered w-full max-w-xs text-center rounded-full opacity-95 text-stone-600" type="text" name="title" required>
    </label>
    <label class="card-title block text-sm mt-3 font-medium dark:text-gray-300 text-center text-white" for="description"> Description:
-      <input class="input input-bordered w-full max-w-xs text-center rounded-full opacity-95" type="text" name="description">
+      <input class="input input-bordered w-full max-w-xs text-center rounded-full opacity-95 text-stone-600" type="text" name="description" required>
 </label>
    <label class="card-title block text-sm mt-3 font-medium dark:text-gray-300 text-center text-white" for="link">Link:
-      <input class="input input-bordered w-full max-w-xs text-center rounded-full opacity-95" type="text" name="link">
+      <input class="input input-bordered w-full max-w-xs text-center rounded-full opacity-95 text-stone-600" type="text" name="link" required>
 </label>
 
 

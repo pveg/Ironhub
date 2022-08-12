@@ -33,13 +33,13 @@
 <form action="/projects/{{project._id}}/edit-project" method="POST" enctype='multipart/form-data'>
 
      <label class="block mb-4 text-sm font-medium dark:text-gray-300 text-center text-white" for="title">Title:
-      <input class="input input-bordered w-full rounded-full max-w-xs text-center opacity-95" type="text" name="title" value="{{project.title}}">
+      <input class="input input-bordered w-full rounded-full max-w-xs text-center opacity-95 text-stone-600" type="text" name="title" value="{{project.title}}">
    </label>
    <label class="block mb-4 text-sm font-medium dark:text-gray-300 text-center text-white" for="description"> Description:
-      <input class="input input-bordered w-full rounded-full max-w-xs text-center opacity-95" type="text" name="description" value="{{project.description}}">
+      <input class="input input-bordered w-full rounded-full max-w-xs text-center opacity-95 text-stone-600" type="text" name="description" value="{{project.description}}">
 </label>
    <label class="block mb-4 text-sm font-medium dark:text-gray-300 text-center text-white" for="link">Link:
-      <input class="input input-bordered w-full rounded-full max-w-xs text-center opacity-95" type="text" name="link" value="{{project.link}}">
+      <input class="input input-bordered w-full rounded-full max-w-xs text-center opacity-95 text-stone-600" type="text" name="link" value="{{project.link}}">
 </label>
       {{!-- <label class="block text-sm font-medium dark:text-gray-300 text-center text-white" for="image">Image:</label>
 <input class="block w-full text-sm mb-4 text-gray-900 rounded-full bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" name="image">
