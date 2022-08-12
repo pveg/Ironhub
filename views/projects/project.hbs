@@ -19,39 +19,39 @@
     <img class="w-24 rounded-full" src="{{this.image}}">
   {{!-- </div> --}}
 </div>
-    <h1 class="block text-md font-medium dark:text-gray-300 text-center text-white mb-2">{{this.title}}</h1>
-    <p class="block text-md font-medium dark:text-gray-300 text-center text-white mb-2">{{this.description}}</p>
+    <h1 class="block text-md font-medium {{!-- dark:text-gray-300 --}} text-center {{!-- text-white --}} mb-2">{{this.title}}</h1>
+    <p class="block text-md font-medium {{!-- dark:text-gray-300 --}} text-center {{!-- text-white --}} mb-2">{{this.description}}</p>
    {{!--  <p class="block text-md font-medium dark:text-gray-300 text-center text-white mb-2">{{this.link}}</p> --}}
     
       <div class="card-actions justify-center">
-    <a href="//{{this.link}}" target='_blank'>  <button class="btn btn-wide btn-sm rounded-full btn-outline text-white text-center "> Link for the project </button></a>
+    <a href="//{{this.link}}" target='_blank'>  <button class="btn btn-wide btn-sm rounded-full btn-outline {{!-- text-white --}} text-center "> Link for the project </button></a>
   </div>
   
     <div class="card-actions justify-center">
     {{#ifEquals ../../user.username ../../currentUser.username}}
-     <a href="/projects/{{this._id}}/edit-project"> <button class="btn btn-wide rounded-full btn-sm btn-outline text-white text-center "> Edit Project </button></a>
+     <a href="/projects/{{this._id}}/edit-project"> <button class="btn btn-wide rounded-full btn-sm btn-outline {{!-- text-white --}} text-center "> Edit Project </button></a>
      {{/ifEquals}}
     </div>
 
     <form action="/{{this._id}}/comments/{{../../user.username}}" method="post">
-    <label class="block text-md font-medium dark:text-gray-300 text-center text-white" for="comments">
+    <label class="block text-md font-medium {{!-- dark:text-gray-300 --}} text-center {{!-- text-white --}}" for="comments">
     <input class="input input-bordered w-full max-w-xs rounded-full text-center opacity-95 mb-2 mt-4 text-stone-600" maxlength="34" type="text" name="comments" required>
         
     </label>
   <div class="card-actions justify-center">
-    <button class="btn btn-wide btn-sm btn-outline text-white rounded-full text-center " type="submit"> Send comment </button>
+    <button class="btn btn-wide btn-sm btn-outline {{!-- text-white --}} rounded-full text-center " type="submit"> Send comment </button>
     </form>
   </div>
     <div>
-        <h3 class="block text-md font-medium dark:text-gray-300 text-center text-white mb-4 ">Comments:</h3>
+        <h3 class="block text-md font-medium {{!-- dark:text-gray-300 --}} text-center text-white mb-4 ">Comments:</h3>
         {{#each this.comments}}
 <div class="avatar justify-center mb-1 ">
   <div class="w-24 rounded-full ">
         <img src="{{this.author.profilepicture}}" alt="">
         </div>
         </div>
-        <h1 class="block text-md font-medium dark:text-gray-300 text-center text-white">{{this.author.username}}:</h1>
-            <p class="block text-md font-medium dark:text-gray-300 text-center text-white mb-8">{{this.comment}}</p>
+        <h1 class="block text-md font-medium {{!-- dark:text-gray-300 --}} text-center {{!-- text-white --}}">{{this.author.username}}:</h1>
+            <p class="block text-md font-medium {{!-- dark:text-gray-300 --}} text-center {{!-- text-white --}} mb-8">{{this.comment}}</p>
         {{/each}}
     </div>
     {{/each}}
@@ -59,7 +59,7 @@
 
   <div class="card-actions justify-center">
 {{!-- {{#ifEquals user.username currentUser.username}} --}}
-    <a href="/profile/{{user.username}}"> <button class="btn btn-sm btn-wide rounded-full text-white btn-outline ">Back to Profile</button></a>
+    <a href="/profile/{{user.username}}"> <button class="btn btn-sm btn-wide rounded-full {{!-- text-white --}} btn-outline ">Back to Profile</button></a>
 {{!-- {{/ifEquals}} --}}
     </div>
 {{!-- 
