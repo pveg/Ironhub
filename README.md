@@ -1,4 +1,4 @@
-## <p align="center" dir="auto"><img src="public/images/ironhub_nobg.png" width="150px"></p>
+## <a href="https://ironhubapp.herokuapp.com" target="_blank"><p align="center" dir="auto"><img src="public/images/ironhub_nobg.png" width="150px"></p></a>
 
 <br>
 
@@ -6,7 +6,7 @@
 
 ## Description:
 
-A plataform by Ironhackers to Ironhackers to showcase projects done during the bootcamp all around the world! 💻🚀🌎✨
+A plataform by Ironhackers to Ironhackers to showcase projects done during the bootcamp all around the world! 💻 🚀 🌎 ✨
 
 <br>
 
@@ -14,16 +14,19 @@ A plataform by Ironhackers to Ironhackers to showcase projects done during the b
 
 - **404** - As a user, I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault.
 - **500** - As a user, I want to see a nice error page when the super team screws it up so that I know that is not my fault.
-- **sign up** - As a user, I want to sign up.
-- **login** - As a user, I want to be able to log in.
-- **logout** - As a user, I want to be able to log out.
-- **search** - As a user, I want to be able to search for other profiles based on the filters I use.
-- **search result** - As a user, I want to be able to see the list of profiles filtered by my preferences.
-- **profile** - As a user I want to be able to display my projects and my information.
-- **edit profile** - As a user, I want to be able to edit my profile.
-- **projects** - As a user, I want to be able to see all the projects and comments.
-- **new project** - As a user, I want to be able to create a new project. 
-- **edit project** - As a user, I want to be able to edit projects.
+- **Sign up** - As a user, I want to sign up.
+- **Login** - As a user, I want to be able to log in.
+- **Logout** - As a user, I want to be able to log out.
+- **Profile** - As a user I want to be able to display my projects and my information.
+- **Edit Profile** - As a user, I want to be able to edit my profile.
+- **Delete Profile** - As a user, I want to be able to delete my account.
+- **Projects** - As a user, I want to be able to see all the projects and comments.
+- **New Project** - As a user, I want to be able to create a new project. 
+- **Edit Project** - As a user, I want to be able to edit projects.
+- **Delete Project** - As a user, I want to be able to delete projects.
+- **Comments** - As a user, I want to be able to leave comments on other projects and receive comments on my projects.
+- **Search** - As a user, I want to be able to search for other profiles based on the filters I use.
+- **Search Result** - As a user, I want to be able to see the list of profiles filtered by my preferences.
 
 
 <br>
@@ -44,15 +47,15 @@ A plataform by Ironhackers to Ironhackers to showcase projects done during the b
 | `POST`     | `/signup`                          | Sends Sign Up info to the server and creates user in the DB. | {  username, name, surname, ironpass, password, campus, course }                                    |
 | `GET`      | `/profile/:username`         | Private route. Renders `profile` view for the user profile. |                                                          |
 | `GET`      | `/profile/:username/edit-profile`            | Private route. Renders `edit-profile` view.             |                                                          |
-| `POST`      | `profile/:username/edit-profile`            | Sends edit-profile info to server and updates user in DB. | { profile picture, username, name, surname, campus, course, location, email, website, linkedin, instagram, bio } |
+| `POST`      | `/profile/:username/edit-profile`            | Sends edit-profile info to server and updates user in DB. | { profile picture, username, name, surname, campus, course, location, email, website, linkedin, instagram, bio } |
 | `GET`      | `/search`         | Private route. Renders `search`.  |                                                          |
 | `GET`      | `/search/results`         | Private route. Renders `search-results`. |                                                        | 
 | `GET`      | `/:username/projects`         | Private route. Renders `project`. |                                                          |
 | `GET`      | `/:username/projects/new`         | Renders `new-project`. Private route. View for a specific project page. |                                                          |
 | `POST`      | `/:username/projects/new`         | Sends New Project info to the server and creates it. |      { image, title, description, link }                                                    | 
-| `GET`      | `/projects/:projectId/edit-project`         | Private route. Renders `edit-project`.|                                                          |
-| `POST`      | `/projects/:projectId/edit-project`         | Sends Edit Project info to the server and updates it.|  { image, title, description, link }                                                         |
-| `GET`      | `/projects/:projectId/delete-project`         | Private route. Deletes a project. Redirects user to `profile`.|                                               |
+| `GET`      | `/projects/:projectid/edit-project`         | Private route. Renders `edit-project`.|                                                          |
+| `POST`      | `/projects/:projectid/edit-project`         | Sends Edit Project info to the server and updates it.|  { image, title, description, link }                                                         |
+| `GET`      | `/projects/:projectid/delete-project`         | Private route. Deletes a project. Redirects user to `profile`.|                                               |
 | `POST`      | `/:projectId/comments/:username`         | Sends Comments info to the server and creates it. |  { image, title, description, link }                                                         |
 | `GET`      | `/profile/:username/delete-profile`         | Private route. Deletes user. Redirects user to `signup`  |     |
 
@@ -64,7 +67,7 @@ A plataform by Ironhackers to Ironhackers to showcase projects done during the b
 ## Models:
 <br>
 <strong>User model:</strong>
-<br>
+
 
 ```javascript
 {
@@ -134,7 +137,8 @@ A plataform by Ironhackers to Ironhackers to showcase projects done during the b
 
 ```
 
-<br><strong>Project model:</strong>
+<br>
+<strong>Project model:</strong>
 
 ```javascript
 
@@ -161,7 +165,8 @@ A plataform by Ironhackers to Ironhackers to showcase projects done during the b
 
 ```
 <br>
-<strong>Comments model:</strong>
+<strong>Comment model:</strong>
+
 
 ```javascript
 
@@ -213,7 +218,7 @@ TailwindCSS
 <br>
 
 
-### Contributors:
-⚒️ Lucas Zaquine - [`Github`](https://github.com/lzaquine) - [`Linkedin`](https://www.linkedin.com/in/lucaszaquine)
+## Contributors:
+⚒️ Lucas Zaquine - [`GitHub`](https://github.com/lzaquine) - [`LinkedIn`](https://www.linkedin.com/in/lucaszaquine)
 
-🗿 Paulo Torres - [`Github`](https://github.com/pveg) - [`Linkedin`](https://www.linkedin.com/in/pveg)
+🗿 Paulo Torres - [`GitHub`](https://github.com/pveg) - [`LinkedIn`](https://www.linkedin.com/in/pveg)
