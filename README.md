@@ -195,7 +195,8 @@ TailwindCSS
 
 
 <a href="https://ironhubapp.herokuapp.com" target="_blank">
-<img src="public/images/IronHub_Main_page.png" alt="IronHub"/></a>
+<img src="public/images/Ironhub-front.png" alt="IronHub"/></a>
+
 
 <br><br>
 
