@@ -1,32 +1,6 @@
-{{!-- <h1>Hello, {{currentUser.username}}</h1>
-<form action="/projects/{{projectid}}/edit-project" method="POST" enctype='multipart/form-data'>
-
-    <label for="title">Title</label>
-    <input type="text" name="title" value="{{title}}">
-
-    <label for="description">Description</label>
-    <input type="text" name="description" value="{{description}}">
-
-    <label for="link">Link</label>
-    <input type="text" name="link" value="{{link}}">
-
-    <label for="image">Image</label>
-    <input type="file" name="image" value="{{image}}">
-    -- --}}
-{{!-- {{#ifEquals user.username currentUser}}
-    <button type="submit">Edit Project</button>
-    <button><a href="/projects/{{projectid}}/delete-project/">Delete Project</a></button>
- {{/ifEquals}} 
-   <a href="/{{currentUser.username}}/projects">Back</a>
-</form>  --}}
-
-
-
-
 <iframe class="z-0 h-full w-full" src='https://my.spline.design/bandingcopy-911fb32df568877dfd6accf77c314a29/' frameborder='0'>
 </iframe>
 <div class="card w-96 mt-4 glass z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-  {{!-- <img class="w-20 mt-4" src="/images/ironhub_nobg.png" alt="Ironhub"> --}}
 
   <div class="card-body">
 
@@ -41,10 +15,6 @@
    <label class="block mb-4 text-sm font-medium dark:text-gray-300 text-center text-white" for="link">Link:
       <input class="input input-bordered w-full rounded-full max-w-xs text-center opacity-95 text-stone-600" type="text" name="link" value="{{project.link}}">
 </label>
-      {{!-- <label class="block text-sm font-medium dark:text-gray-300 text-center text-white" for="image">Image:</label>
-<input class="block w-full text-sm mb-4 text-gray-900 rounded-full bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" name="image">
- --}}
-
    <div class="card-actions justify-center">
 
    <button class="btn btn-sm btn-wide text-white rounded-full btn-outline mt-3" type="submit">Edit Project</button>
