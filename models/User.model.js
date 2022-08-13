@@ -51,7 +51,7 @@ const userSchema = new Schema(
     },
     profilepicture: {
       type: String,
-      default: "https://res.cloudinary.com/dkdf4rhxp/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1660229420/ironhub-project/yiisznvaxj6tzw9d0zmg.jpg"
+      default: "https://res.cloudinary.com/daknbj7xw/image/upload/v1660418652/ironhub-project/abstract-user-flat-4_vxw0m6.png"
     },
     location: {
       type: String
